@@ -11,21 +11,43 @@ import UIKit
 
 class World  {
     
-    let boardWidth = 5
-    let boardHeight = 8
+    let boardWidth: Int
+    let boardHeight: Int
     
     var cellGrid = [Cell]()
     
-    func populateEmpty()  {
-        for var i in boardWidth * boardHeight - 1
+    init(width: Int, height: Int)   {
+        boardWidth = width
+        boardHeight = height
+        
+        for index in 0...(width*height) {
+            cellGrid.append(Cell())
+        }
     }
     
-    func coords(i:Int)    {
-        let x = i % boardWidth
-        let y = i % boardHeight
+    func location(i:Int) -> (x:Int, y:Int)   {
+        return (i % boardWidth, (i / boardWidth) % boardHeight)
         
         //        print("Cell at location [\(location!.x)],[\(location!.y)] :: ")
-        
+        //        location = CGPoint(x: i % boardWidth, y: (i / boardWidth) % boardHeight)
+
+    }
+    
+    func printWorld()   {
+        for index in 0..<(boardWidth*boardHeight)   {
+            if cellGrid[index].isDead    {
+                print("O")
+            }
+            else    {
+                print("X")
+            }
+            if location(index).x == boardWidth-1    {
+                println()
+            }
+            else {
+                print(" ")
+            }
+        }
     }
     
     func liveCell() -> Cell {

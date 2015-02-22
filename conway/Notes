@@ -1,0 +1,29 @@
+So these are notes....
+
+A Cell is a single object that contains the characteristics and state of a single unit.
+
+This does NOT include location!
+
+The World is defined as an array of size worldWidth * worldHeight
+
+The World is logically organized as a grid of worldWidth x worldHeight
+
+The only time the location is needed is to check surrounding cells, and to give the view controller the position of the cell
+
+
+The world is an array of
+
+
+Cell
+World
+germ
+inhabitant
+bug
+environment
+surroundings
+
+food
+water
+radiation
+temp
+atmosphere

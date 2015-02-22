@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
     
     func testCell()     {
-        var cell = Cell(atIndex: 1254)
+        var cell = Cell()
         
         println("Initial State:")
         cell.printState()
@@ -52,7 +52,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        testCell()
+//        testCell()
+        
+        let w = World(width: 26, height: 14)
+        
+        w.printWorld()
         
         //       let imageSize = CGSize(width: 200, height: 200)
         //      let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 100, y: 100), size: imageSize))

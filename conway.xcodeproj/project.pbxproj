@@ -15,6 +15,7 @@
 		455C9A111A997A0700469BB8 /* conwayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C9A101A997A0700469BB8 /* conwayTests.swift */; };
 		455C9A1B1A997C2F00469BB8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C9A1A1A997C2F00469BB8 /* Cell.swift */; };
 		455C9A1D1A997CC600469BB8 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C9A1C1A997CC600469BB8 /* World.swift */; };
+		455C9A1F1A99801F00469BB8 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = 455C9A1E1A99801F00469BB8 /* Notes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		455C9A101A997A0700469BB8 /* conwayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = conwayTests.swift; sourceTree = "<group>"; };
 		455C9A1A1A997C2F00469BB8 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		455C9A1C1A997CC600469BB8 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		455C9A1E1A99801F00469BB8 /* Notes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				455C9A031A997A0600469BB8 /* LaunchScreen.xib */,
 				455C99F81A997A0600469BB8 /* Supporting Files */,
 				455C9A1A1A997C2F00469BB8 /* Cell.swift */,
+				455C9A1E1A99801F00469BB8 /* Notes */,
 				455C9A1C1A997CC600469BB8 /* World.swift */,
 			);
 			path = conway;
@@ -200,6 +203,7 @@
 			files = (
 				455C9A001A997A0600469BB8 /* Main.storyboard in Resources */,
 				455C9A051A997A0600469BB8 /* LaunchScreen.xib in Resources */,
+				455C9A1F1A99801F00469BB8 /* Notes in Resources */,
 				455C9A021A997A0600469BB8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +421,7 @@
 				455C9A161A997A0700469BB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		455C9A171A997A0700469BB8 /* Build configuration list for PBXNativeTarget "conwayTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +430,7 @@
 				455C9A191A997A0700469BB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
