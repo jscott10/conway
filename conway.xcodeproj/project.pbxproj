@@ -13,6 +13,8 @@
 		455C9A021A997A0600469BB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 455C9A011A997A0600469BB8 /* Images.xcassets */; };
 		455C9A051A997A0600469BB8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 455C9A031A997A0600469BB8 /* LaunchScreen.xib */; };
 		455C9A111A997A0700469BB8 /* conwayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C9A101A997A0700469BB8 /* conwayTests.swift */; };
+		455C9A1B1A997C2F00469BB8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C9A1A1A997C2F00469BB8 /* Cell.swift */; };
+		455C9A1D1A997CC600469BB8 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C9A1C1A997CC600469BB8 /* World.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		455C9A0A1A997A0700469BB8 /* conwayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = conwayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		455C9A0F1A997A0700469BB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		455C9A101A997A0700469BB8 /* conwayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = conwayTests.swift; sourceTree = "<group>"; };
+		455C9A1A1A997C2F00469BB8 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		455C9A1C1A997CC600469BB8 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				455C9A011A997A0600469BB8 /* Images.xcassets */,
 				455C9A031A997A0600469BB8 /* LaunchScreen.xib */,
 				455C99F81A997A0600469BB8 /* Supporting Files */,
+				455C9A1A1A997C2F00469BB8 /* Cell.swift */,
+				455C9A1C1A997CC600469BB8 /* World.swift */,
 			);
 			path = conway;
 			sourceTree = "<group>";
@@ -214,6 +220,8 @@
 			files = (
 				455C99FD1A997A0600469BB8 /* ViewController.swift in Sources */,
 				455C99FB1A997A0600469BB8 /* AppDelegate.swift in Sources */,
+				455C9A1D1A997CC600469BB8 /* World.swift in Sources */,
+				455C9A1B1A997C2F00469BB8 /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
