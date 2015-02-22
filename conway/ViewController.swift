@@ -10,10 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let w = World(width: 26, height: 14)
+    
     //    var newCell = Cell()
     
     @IBAction func updateGrid() {
-        println("button pressed!")
+        w.randomizeWorld()
+        
+        w.printWorld()
+        
     }
     
     func testCell()     {
@@ -54,9 +59,13 @@ class ViewController: UIViewController {
         
 //        testCell()
         
-        let w = World(width: 26, height: 14)
+//        let w = World(width: 26, height: 14)
         
-        w.printWorld()
+//        w.printWorld()
+        
+//        w.randomizeWorld()
+        
+//        w.printWorld()
         
         //       let imageSize = CGSize(width: 200, height: 200)
         //      let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 100, y: 100), size: imageSize))

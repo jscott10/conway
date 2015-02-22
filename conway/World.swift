@@ -39,7 +39,7 @@ class World  {
                 print("O")
             }
             else    {
-                print("X")
+                print(" ")
             }
             if location(index).x == boardWidth-1    {
                 println()
@@ -47,6 +47,13 @@ class World  {
             else {
                 print(" ")
             }
+        }
+        println()
+    }
+    
+    func randomizeWorld()   {
+        for index in 0..<(boardWidth*boardHeight)   {
+            cellGrid[index] = randomCell()
         }
     }
     
