@@ -15,9 +15,12 @@ class ViewController: UIViewController {
     //    var newCell = Cell()
     
     @IBAction func updateGrid() {
-        w.randomizeWorld()
         
-        w.printWorld()
+    let density = 5 as UInt32
+        
+    w.randomizeWorld(density)
+        
+    w.printWorld()
         
     }
     
