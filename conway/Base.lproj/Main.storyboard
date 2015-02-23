@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -25,21 +26,22 @@
                                     <action selector="updateGrid" destination="BYZ-38-t0r" eventType="touchUpInside" id="rj9-i3-9qi"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="5" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-fn-2KK">
-                                <rect key="frame" x="298" y="0.0" width="4" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" id="aa7-Rs-iu8"/>
-                                </constraints>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCO-lt-57G">
                                 <rect key="frame" x="279" y="456" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="5" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-fn-2KK">
+                                <rect key="frame" x="175" y="393" width="250" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="iFV-RP-RL8"/>
+                                </constraints>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="9uo-fn-2KK" secondAttribute="bottom" constant="570" id="2rE-aH-OwN"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UyN-a8-RDv" secondAttribute="bottom" constant="68" id="4l3-3J-X6Y"/>
                             <constraint firstAttribute="centerX" secondItem="9uo-fn-2KK" secondAttribute="centerX" id="8kW-ce-LNk"/>
                             <constraint firstAttribute="centerX" secondItem="JCO-lt-57G" secondAttribute="centerX" id="phr-R0-Sfe"/>
@@ -50,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="898" y="558"/>
+            <point key="canvasLocation" x="869" y="544"/>
         </scene>
     </scenes>
 </document>
