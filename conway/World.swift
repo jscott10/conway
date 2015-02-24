@@ -14,24 +14,25 @@ class World  {
     let boardWidth: Int
     let boardHeight: Int
     
-    var cellGrid: [[Cell]]
+    var currentGrid: [[Cell]]
+    var nextGrid: [[Cell]]
     
     init(width: Int, height: Int)   {
         boardWidth = width
         boardHeight = height
         
 //        cellGrid = [[Cell]](count: boardHeight, repeatedValue: [Cell](count: boardWidth, repeatedValue: Cell()))
-        cellGrid = [[Cell]]()
-
-        println("\(cellGrid.count)")
+        currentGrid = [[Cell]]()
+        
         for h in 0..<boardHeight    {
             var c = [Cell]()
             for w in 0..<boardWidth  {
                 c.append(Cell())
-                println("h: \(h), w: \(w)")
             }
-            cellGrid.append(c)
+            currentGrid.append(c)
         }
+        
+        nextGrid = currentGrid
     }
     
 //    func location(i:Int) -> (x:Int, y:Int)   {
@@ -45,8 +46,8 @@ class World  {
     func printWorld()   {
         for h in 0..<boardHeight    {
             for w in 0..<boardWidth   {
-                if cellGrid[h][w].isDead    {
-                    print(" ")
+                if nextGrid[h][w].isDead    {
+                    print("-")
                 }
                 else    {
                     print("O")
@@ -58,16 +59,75 @@ class World  {
         println()
     }
     
-    func randomizeWorld(density: UInt32)   {
+    func randomizeWorld(density:Int)   {
         for h in 0..<boardHeight    {
             for w in 0..<boardWidth   {
-                randomizeCell(cellGrid[h][w], density: density)
+                randomizeCell(currentGrid[h][w], density: density)
             }
         }
     }
     
-    func randomizeCell(cell: Cell, density: UInt32)   {
-        var p:UInt32
+    func processWorld()     {
+        for h in 0..<boardHeight    {
+            for w in 0..<boardWidth   {
+                if currentGrid[h][w].isDead {
+                    if checkNeighbors(atLocationX: w, andY: h) == 3 {
+                        nextGrid[h][w].powerOn()
+                    }
+                }
+                else    {
+                    if checkNeighbors(atLocationX: w, andY: h) == 2 || checkNeighbors(atLocationX: w, andY: h) == 3 {
+                        nextGrid[h][w].powerOn()
+                    }
+                    else    {
+                        nextGrid[h][w].kill()
+                    }
+                }
+            }
+        }
+        currentGrid = nextGrid
+    }
+    
+    func checkNeighbors(atLocationX x: Int, andY y: Int) -> Int     {
+        
+        var neighbors:Int = 0
+
+        let plusX = (x + boardWidth + 1) % boardWidth
+        let minusX = (x + boardWidth - 1) % boardWidth
+        let plusY = (y + boardHeight + 1) % boardHeight
+        let minusY = (y + boardHeight - 1) % boardHeight
+        
+        if currentGrid[minusY][minusX].isAlive    {
+            neighbors++
+        }
+        if currentGrid[minusY][x].isAlive    {
+            neighbors++
+        }
+        if currentGrid[minusY][plusX].isAlive    {
+            neighbors++
+        }
+        if currentGrid[y][minusX].isAlive    {
+            neighbors++
+        }
+        if currentGrid[y][plusX].isAlive    {
+            neighbors++
+        }
+        if currentGrid[plusY][minusX].isAlive    {
+            neighbors++
+        }
+        if currentGrid[plusY][x].isAlive    {
+            neighbors++
+        }
+        if currentGrid[plusY][plusX].isAlive    {
+            neighbors++
+        }
+        
+        return neighbors
+        
+    }
+    
+    func randomizeCell(cell: Cell, density: Int)   {
+        var p:Int
         
         if density < 5  {
             p = 5
@@ -79,7 +139,7 @@ class World  {
             p = density
         }
         
-        if arc4random_uniform(100) < p   {
+        if Int(arc4random_uniform(100)) < p   {
             cell.powerOn()
         }
         else    {

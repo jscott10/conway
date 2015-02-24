@@ -14,12 +14,18 @@ class ViewController: UIViewController {
     
     //    var newCell = Cell()
     
+    var density = 55
+    
+    @IBAction func densitySlider(sender: UISlider) {
+        density = lroundf(sender.value)
+        densityValue.text = "\(density)"
+    }
+    
+    @IBOutlet weak var densityValue: UILabel!
+    
     @IBAction func updateGrid() {
         
-    let density = 5 as UInt32
-        
-    w.randomizeWorld(density)
-        
+    w.processWorld()
     w.printWorld()
         
     }
@@ -58,6 +64,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        w.randomizeWorld(density)
+        w.printWorld()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
 //        testCell()

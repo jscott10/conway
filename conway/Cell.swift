@@ -15,6 +15,8 @@ class Cell  {
     
     var isDead: Bool { return energyLevel == 0 }
     
+    var isAlive: Bool { return energyLevel == 1 }
+    
     //    let location: CGPoint?
     
     //    init(atIndex i: Int)    {

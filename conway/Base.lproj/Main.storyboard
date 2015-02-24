@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -32,23 +32,28 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="5" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-fn-2KK">
-                                <rect key="frame" x="175" y="393" width="250" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="iFV-RP-RL8"/>
-                                </constraints>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="5" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-fn-2KK">
+                                <rect key="frame" x="14" y="401" width="572" height="31"/>
+                                <connections>
+                                    <action selector="densitySlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="IKw-sP-gpL"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="9uo-fn-2KK" secondAttribute="bottom" constant="570" id="2rE-aH-OwN"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UyN-a8-RDv" secondAttribute="bottom" constant="68" id="4l3-3J-X6Y"/>
-                            <constraint firstAttribute="centerX" secondItem="9uo-fn-2KK" secondAttribute="centerX" id="8kW-ce-LNk"/>
-                            <constraint firstAttribute="centerX" secondItem="JCO-lt-57G" secondAttribute="centerX" id="phr-R0-Sfe"/>
-                            <constraint firstItem="UyN-a8-RDv" firstAttribute="top" secondItem="JCO-lt-57G" secondAttribute="bottom" constant="25" id="qbh-3d-TF2"/>
-                            <constraint firstAttribute="centerX" secondItem="UyN-a8-RDv" secondAttribute="centerX" id="ybA-aO-Ibm"/>
+                            <constraint firstItem="UyN-a8-RDv" firstAttribute="top" secondItem="JCO-lt-57G" secondAttribute="bottom" constant="25" id="1ai-QT-nxu"/>
+                            <constraint firstItem="9uo-fn-2KK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="5TS-yn-N9w"/>
+                            <constraint firstItem="9uo-fn-2KK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Ntu-mn-CNp"/>
+                            <constraint firstAttribute="centerX" secondItem="9uo-fn-2KK" secondAttribute="centerX" id="PCx-8X-oex"/>
+                            <constraint firstItem="JCO-lt-57G" firstAttribute="top" secondItem="9uo-fn-2KK" secondAttribute="bottom" constant="25" id="VZO-Lq-BB8"/>
+                            <constraint firstAttribute="centerX" secondItem="JCO-lt-57G" secondAttribute="centerX" id="fSa-9F-25M"/>
+                            <constraint firstAttribute="centerX" secondItem="UyN-a8-RDv" secondAttribute="centerX" id="myn-Z2-IeN"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UyN-a8-RDv" secondAttribute="bottom" constant="68" id="x81-dE-w8j"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="densityValue" destination="JCO-lt-57G" id="SrM-xW-hS9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
