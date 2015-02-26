@@ -10,15 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let w = World(width: 26, height: 14)
-    
-    //    var newCell = Cell()
+    let w = World(gridWidth: 14, gridHeight: 24)
     
     var density = 55
     
     @IBAction func densitySlider(sender: UISlider) {
         density = lroundf(sender.value)
         densityValue.text = "\(density)"
+        w.currentGrid.randomize(density)
+        w.currentGrid.printGrid()
+        
     }
     
     @IBOutlet weak var densityValue: UILabel!
@@ -26,59 +27,15 @@ class ViewController: UIViewController {
     @IBAction func updateGrid() {
         
     w.processWorld()
-    w.printWorld()
+    w.currentGrid.printGrid()
         
     }
-    
-    func testCell()     {
-        var cell = Cell()
-        
-        println("Initial State:")
-        cell.printState()
-        
-        println("After powerUp():")
-        cell.powerUp()
-        cell.printState()
-        
-        println("After powerUp():")
-        cell.powerUp()
-        cell.printState()
-        
-        println("After powerUp():")
-        cell.powerUp()
-        cell.printState()
-        
-        println("After powerDown():")
-        cell.powerDown()
-        cell.printState()
-        
-        println("After powerDown():")
-        cell.powerDown()
-        cell.printState()
-        
-        println("After kill():")
-        cell.kill()
-        cell.printState()
-        
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        w.randomizeWorld(density)
-        w.printWorld()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        
-//        testCell()
-        
-//        let w = World(width: 26, height: 14)
-        
-//        w.printWorld()
-        
-//        w.randomizeWorld()
-        
-//        w.printWorld()
+        w.currentGrid.randomize(density)
+//        w.currentGrid.printGrid()
         
         //       let imageSize = CGSize(width: 200, height: 200)
         //      let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 100, y: 100), size: imageSize))

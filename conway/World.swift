@@ -11,142 +11,51 @@ import UIKit
 
 class World  {
     
-    let boardWidth: Int
-    let boardHeight: Int
+    var currentGrid:Grid
+    var nextGrid:Grid
     
-    var currentGrid: [[Cell]]
-    var nextGrid: [[Cell]]
-    
-    init(width: Int, height: Int)   {
-        boardWidth = width
-        boardHeight = height
+    init(gridWidth width: Int, gridHeight height: Int)   {
         
-//        cellGrid = [[Cell]](count: boardHeight, repeatedValue: [Cell](count: boardWidth, repeatedValue: Cell()))
-        currentGrid = [[Cell]]()
+        currentGrid = Grid(gridWidth: width, gridHeight: height)
+        nextGrid = Grid(gridWidth: width, gridHeight: height)
         
-        for h in 0..<boardHeight    {
-            var c = [Cell]()
-            for w in 0..<boardWidth  {
-                c.append(Cell())
-            }
-            currentGrid.append(c)
-        }
+        currentGrid.randomize(50)
+        println("a")
+        currentGrid.printGrid()
+        println("b")
+        nextGrid.printGrid()
+        nextGrid.randomize(50)
+        println("c")
+        nextGrid.printGrid()
+        currentGrid.printGrid()
         
-        nextGrid = currentGrid
     }
-    
-//    func location(i:Int) -> (x:Int, y:Int)   {
-//        return (i % boardWidth, (i / boardWidth) % boardHeight)
-        
-        //        print("Cell at location [\(location!.x)],[\(location!.y)] :: ")
-        //        location = CGPoint(x: i % boardWidth, y: (i / boardWidth) % boardHeight)
 
-//    }
-    
-    func printWorld()   {
-        for h in 0..<boardHeight    {
-            for w in 0..<boardWidth   {
-                if nextGrid[h][w].isDead    {
-                    print("-")
-                }
-                else    {
-                    print("O")
-                }
-                print(" ")
-            }
-            println()
-        }
-        println()
-    }
-    
-    func randomizeWorld(density:Int)   {
-        for h in 0..<boardHeight    {
-            for w in 0..<boardWidth   {
-                randomizeCell(currentGrid[h][w], density: density)
-            }
-        }
-    }
-    
     func processWorld()     {
-        for h in 0..<boardHeight    {
-            for w in 0..<boardWidth   {
-                if currentGrid[h][w].isDead {
-                    if checkNeighbors(atLocationX: w, andY: h) == 3 {
-                        nextGrid[h][w].powerOn()
-                    }
-                }
-                else    {
-                    if checkNeighbors(atLocationX: w, andY: h) == 2 || checkNeighbors(atLocationX: w, andY: h) == 3 {
-                        nextGrid[h][w].powerOn()
+        for y in 0..<currentGrid.gridHeight    {
+            for x in 0..<currentGrid.gridWidth   {
+                let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
+                if currentGrid.cellGrid[y][x].isDead {
+                    if neighbors == 3 {
+                        nextGrid.cellGrid[y][x].powerOn()
                     }
                     else    {
-                        nextGrid[h][w].kill()
+                        nextGrid.cellGrid[y][x].powerOff()
+                    }
+                }
+                else    {
+                    if neighbors == 2 || neighbors == 3 {
+                        nextGrid.cellGrid[y][x].powerOn()
+                    }
+                    else    {
+                        nextGrid.cellGrid[y][x].powerOff()
                     }
                 }
             }
         }
+        
         currentGrid = nextGrid
-    }
-    
-    func checkNeighbors(atLocationX x: Int, andY y: Int) -> Int     {
-        
-        var neighbors:Int = 0
 
-        let plusX = (x + boardWidth + 1) % boardWidth
-        let minusX = (x + boardWidth - 1) % boardWidth
-        let plusY = (y + boardHeight + 1) % boardHeight
-        let minusY = (y + boardHeight - 1) % boardHeight
-        
-        if currentGrid[minusY][minusX].isAlive    {
-            neighbors++
-        }
-        if currentGrid[minusY][x].isAlive    {
-            neighbors++
-        }
-        if currentGrid[minusY][plusX].isAlive    {
-            neighbors++
-        }
-        if currentGrid[y][minusX].isAlive    {
-            neighbors++
-        }
-        if currentGrid[y][plusX].isAlive    {
-            neighbors++
-        }
-        if currentGrid[plusY][minusX].isAlive    {
-            neighbors++
-        }
-        if currentGrid[plusY][x].isAlive    {
-            neighbors++
-        }
-        if currentGrid[plusY][plusX].isAlive    {
-            neighbors++
-        }
-        
-        return neighbors
-        
     }
-    
-    func randomizeCell(cell: Cell, density: Int)   {
-        var p:Int
-        
-        if density < 5  {
-            p = 5
-        }
-        else if density > 100    {
-            p = 100
-        }
-        else    {
-            p = density
-        }
-        
-        if Int(arc4random_uniform(100)) < p   {
-            cell.powerOn()
-        }
-        else    {
-            cell.powerOff()
-        }
-    }
-    
-    
-    
+
 }

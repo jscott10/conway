@@ -17,12 +17,6 @@ class Cell  {
     
     var isAlive: Bool { return energyLevel == 1 }
     
-    //    let location: CGPoint?
-    
-    //    init(atIndex i: Int)    {
-    //        location = CGPoint(x: i % boardWidth, y: (i / boardWidth) % boardHeight)
-    //    }
-    
     func powerUp()  {
         energyLevel++
     }
@@ -36,10 +30,6 @@ class Cell  {
     }
     
     func powerOff()  {
-        energyLevel = 0
-    }
-    
-    func kill() {
         energyLevel = 0
     }
     
