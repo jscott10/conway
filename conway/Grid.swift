@@ -42,6 +42,15 @@ class Grid  {
         }
     }
     
+    func setupTestGrid()   {
+        var i = 1
+        for y in 0..<gridHeight    {
+            for x in 0..<gridWidth   {
+                cellGrid[y][x].energyLevel = i++
+            }
+        }
+    }
+    
     func checkNeighbors(atRow y: Int, andCol x: Int) -> Int     {
         
         var neighbors:Int = 0
@@ -52,7 +61,7 @@ class Grid  {
         let minusX = (x + gridWidth - 1) % gridWidth
         
         print("\(x), \(y) : ")
-
+        
         if cellGrid[minusY][minusX].isAlive    {
             neighbors++
         }
@@ -85,6 +94,25 @@ class Grid  {
         
     }
     
+    func printNeighbors(atRow y: Int, andCol x: Int)     {
+        
+        let plusY = (y + gridHeight + 1) % gridHeight
+        let minusY = (y + gridHeight - 1) % gridHeight
+        let plusX = (x + gridWidth + 1) % gridWidth
+        let minusX = (x + gridWidth - 1) % gridWidth
+        
+        println("\(x), \(y) : ")
+        println("-Y, -X: \(cellGrid[minusY][minusX].energyLevel)")
+        println("-Y, X: \(cellGrid[minusY][x].energyLevel)")
+        println("-Y, +X: \(cellGrid[minusY][plusX].energyLevel)")
+        println("Y, -X: \(cellGrid[y][minusX].energyLevel)")
+        println("Y, +X: \(cellGrid[y][plusX].energyLevel)")
+        println("+Y, -X: \(cellGrid[plusY][minusX].energyLevel)")
+        println("+Y, X: \(cellGrid[plusY][x].energyLevel)")
+        println("+Y, +X: \(cellGrid[plusY][plusX].energyLevel)")
+       
+    }
+    
     func printGrid()   {
         for xx in 0..<gridWidth+1   {
             print("--")
@@ -103,6 +131,29 @@ class Grid  {
             }
             println("|")
         }
+        for xx in 0..<gridWidth+1   {
+            print("--")
+        }
+        println()
+    }
+    
+    func printTestGrid()   {
+        let z = NSNumberFormatter()
+        z.minimumIntegerDigits = 2
+        
+        for xx in 0..<gridWidth+1   {
+            print("--")
+        }
+        println()
+        for y in 0..<gridHeight    {
+            print("| ")
+            for x in 0..<gridWidth   {
+                let n: String = z.stringFromNumber(cellGrid[y][x].energyLevel)!
+                print(n+" ")
+            }
+            println(" ")
+        }
+        println("|")
         for xx in 0..<gridWidth+1   {
             print("--")
         }

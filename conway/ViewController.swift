@@ -36,10 +36,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        densitySlider.value = Float(density)
+//        densitySlider.value = Float(density)
         
-        w.currentGrid.randomize(density)
-//        w.currentGrid.printGrid()
+        w.currentGrid.setupTestGrid()
+        w.currentGrid.printTestGrid()
+        w.currentGrid.printNeighbors(atRow: 0, andCol: 0)
         
         //       let imageSize = CGSize(width: 200, height: 200)
         //      let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 100, y: 100), size: imageSize))
