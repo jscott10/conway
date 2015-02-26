@@ -55,36 +55,28 @@ class Grid  {
 
         if cellGrid[minusY][minusX].isAlive    {
             neighbors++
-            print("Y")
-        } else {print("N")}
+        }
         if cellGrid[minusY][x].isAlive    {
             neighbors++
-            print("Y")
-        } else {print("N")}
+        }
         if cellGrid[minusY][plusX].isAlive    {
             neighbors++
-            print("Y ")
-        } else {print("N ")}
+        }
         if cellGrid[y][minusX].isAlive    {
             neighbors++
-            print("Y")
-        } else {print("N")}
+        }
         if cellGrid[y][plusX].isAlive    {
             neighbors++
-            print("Y ")
-        } else {print("N ")}
+        }
         if cellGrid[plusY][minusX].isAlive    {
             neighbors++
-            print("Y")
-        } else {print("N")}
+        }
         if cellGrid[plusY][x].isAlive    {
             neighbors++
-            print("Y")
-        } else {print("N")}
+        }
         if cellGrid[plusY][plusX].isAlive    {
             neighbors++
-            print("Y")
-        } else {print("N")}
+        }
         
         print(" : -Y=\(minusY), +Y=\(plusY), -X=\(minusX), +X=\(plusX) : n=\(neighbors)")
         println()

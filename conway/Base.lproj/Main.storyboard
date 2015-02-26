@@ -52,6 +52,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="densitySlider" destination="9uo-fn-2KK" id="S60-9Z-DPj"/>
                         <outlet property="densityValue" destination="JCO-lt-57G" id="SrM-xW-hS9"/>
                     </connections>
                 </viewController>

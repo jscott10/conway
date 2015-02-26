@@ -19,16 +19,6 @@ class World  {
         currentGrid = Grid(gridWidth: width, gridHeight: height)
         nextGrid = Grid(gridWidth: width, gridHeight: height)
         
-        currentGrid.randomize(50)
-        println("a")
-        currentGrid.printGrid()
-        println("b")
-        nextGrid.printGrid()
-        nextGrid.randomize(50)
-        println("c")
-        nextGrid.printGrid()
-        currentGrid.printGrid()
-        
     }
 
     func processWorld()     {

@@ -10,30 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let w = World(gridWidth: 14, gridHeight: 24)
+    let w = World(gridWidth: 5, gridHeight: 5)
     
-    var density = 55
+    var density = 75
     
     @IBAction func densitySlider(sender: UISlider) {
         density = lroundf(sender.value)
         densityValue.text = "\(density)"
         w.currentGrid.randomize(density)
-        w.currentGrid.printGrid()
+ //       w.currentGrid.printGrid()
         
     }
+    
+    @IBOutlet weak var densitySlider: UISlider!
     
     @IBOutlet weak var densityValue: UILabel!
     
     @IBAction func updateGrid() {
         
-    w.processWorld()
-    w.currentGrid.printGrid()
+        w.processWorld()
+        w.currentGrid.printGrid()
         
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        densitySlider.value = Float(density)
+        
         w.currentGrid.randomize(density)
 //        w.currentGrid.printGrid()
         
