@@ -10,14 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let w = World(gridWidth: 5, gridHeight: 5)
+    var w = World(gridWidth: 17, gridHeight: 17)
     
     var density = 75
     
     @IBAction func densitySlider(sender: UISlider) {
         density = lroundf(sender.value)
         densityValue.text = "\(density)"
-        w.currentGrid.randomize(density)
+
+        //        w.currentGrid.randomize(density)
  //       w.currentGrid.printGrid()
         
     }
@@ -29,7 +30,7 @@ class ViewController: UIViewController {
     @IBAction func updateGrid() {
         
         w.processWorld()
-        w.currentGrid.printGrid()
+ //       w.currentGrid.printGrid()
         
     }
 
@@ -38,8 +39,14 @@ class ViewController: UIViewController {
 
         densitySlider.value = Float(density)
         
-        w.currentGrid.randomize(density)
-//        w.currentGrid.printGrid()
+        w.currentGrid.setupPulsar()
+        
+//        w.currentGrid.randomize(density)
+        
+        println("Current:")
+        w.currentGrid.printGrid()
+        println("Next:")
+        w.nextGrid.printGrid()
         
         //       let imageSize = CGSize(width: 200, height: 200)
         //      let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 100, y: 100), size: imageSize))

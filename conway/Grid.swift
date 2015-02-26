@@ -42,6 +42,67 @@ class Grid  {
         }
     }
     
+    func setupPulsar()   {
+        
+        // Rows
+        cellGrid[2][4].powerOn()
+        cellGrid[2][5].powerOn()
+        cellGrid[2][6].powerOn()
+        cellGrid[2][10].powerOn()
+        cellGrid[2][11].powerOn()
+        cellGrid[2][12].powerOn()
+        
+        cellGrid[7][4].powerOn()
+        cellGrid[7][5].powerOn()
+        cellGrid[7][6].powerOn()
+        cellGrid[7][10].powerOn()
+        cellGrid[7][11].powerOn()
+        cellGrid[7][12].powerOn()
+        
+        cellGrid[9][4].powerOn()
+        cellGrid[9][5].powerOn()
+        cellGrid[9][6].powerOn()
+        cellGrid[9][10].powerOn()
+        cellGrid[9][11].powerOn()
+        cellGrid[9][12].powerOn()
+        
+        cellGrid[14][4].powerOn()
+        cellGrid[14][5].powerOn()
+        cellGrid[14][6].powerOn()
+        cellGrid[14][10].powerOn()
+        cellGrid[14][11].powerOn()
+        cellGrid[14][12].powerOn()
+        
+        // Cols
+        cellGrid[4][2].powerOn()
+        cellGrid[5][2].powerOn()
+        cellGrid[6][2].powerOn()
+        cellGrid[10][2].powerOn()
+        cellGrid[11][2].powerOn()
+        cellGrid[12][2].powerOn()
+        
+        cellGrid[4][7].powerOn()
+        cellGrid[5][7].powerOn()
+        cellGrid[6][7].powerOn()
+        cellGrid[10][7].powerOn()
+        cellGrid[11][7].powerOn()
+        cellGrid[12][7].powerOn()
+        
+        cellGrid[4][9].powerOn()
+        cellGrid[5][9].powerOn()
+        cellGrid[6][9].powerOn()
+        cellGrid[10][9].powerOn()
+        cellGrid[11][9].powerOn()
+        cellGrid[12][9].powerOn()
+        
+        cellGrid[4][14].powerOn()
+        cellGrid[5][14].powerOn()
+        cellGrid[6][14].powerOn()
+        cellGrid[10][14].powerOn()
+        cellGrid[11][14].powerOn()
+        cellGrid[12][14].powerOn()
+    }
+    
     func checkNeighbors(atRow y: Int, andCol x: Int) -> Int     {
         
         var neighbors:Int = 0
@@ -51,7 +112,7 @@ class Grid  {
         let plusX = (x + gridWidth + 1) % gridWidth
         let minusX = (x + gridWidth - 1) % gridWidth
         
-        print("\(x), \(y) : ")
+//        print("\(x), \(y) : ")
 
         if cellGrid[minusY][minusX].isAlive    {
             neighbors++
@@ -78,8 +139,8 @@ class Grid  {
             neighbors++
         }
         
-        print(" : -Y=\(minusY), +Y=\(plusY), -X=\(minusX), +X=\(plusX) : n=\(neighbors)")
-        println()
+ //       print(" : -Y=\(minusY), +Y=\(plusY), -X=\(minusX), +X=\(plusX) : n=\(neighbors)")
+ //       println()
         
         return neighbors
         
@@ -94,7 +155,7 @@ class Grid  {
             print("| ")
             for x in 0..<gridWidth   {
                 if cellGrid[y][x].isDead    {
-                    print(" ")
+                    print("-")
                 }
                 else    {
                     print("O")

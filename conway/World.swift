@@ -44,8 +44,18 @@ class World  {
             }
         }
         
+        println("Current BEFORE:")
+        currentGrid.printGrid()
+        println("Next BEFORE:")
+        nextGrid.printGrid()
+        
         currentGrid = nextGrid
 
+        println("Current AFTER:")
+        currentGrid.printGrid()
+        println("Next AFTER:")
+        nextGrid.printGrid()
+        
     }
 
 }
