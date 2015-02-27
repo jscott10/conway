@@ -22,6 +22,11 @@ class World  {
     }
 
     func processWorld()     {
+        println("Current BEFORE1:")
+        currentGrid.printGrid()
+        println("Next BEFORE:")
+        nextGrid.printGrid()
+        
         for y in 0..<currentGrid.gridHeight    {
             for x in 0..<currentGrid.gridWidth   {
                 let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
@@ -44,14 +49,20 @@ class World  {
             }
         }
         
-        println("Current BEFORE:")
+        println("Current BEFORE2:")
         currentGrid.printGrid()
         println("Next BEFORE:")
         nextGrid.printGrid()
         
         currentGrid = nextGrid
+        
+//        for yy in 0..<currentGrid.gridHeight    {
+//            for xx in 0..<currentGrid.gridWidth   {
+ //               currentGrid.cellGrid[yy][xx] = nextGrid.cellGrid[yy][xx]
+//            }
+//        }
 
-        println("Current AFTER:")
+        println("Current AFTER3:")
         currentGrid.printGrid()
         println("Next AFTER:")
         nextGrid.printGrid()

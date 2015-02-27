@@ -26,9 +26,20 @@ class Grid  {
             }
             cellGrid.append(c)
         }
-        
     }
-    
+/*
+    func copy() -> Grid {
+        var c: Grid(gridWidth: gridWidth, gridHeight: gridHeight)
+        
+        for y in 0..<gridHeight    {
+            c = copy.()
+            for x in 0..<gridWidth  {
+                c.append(Cell())
+            }
+            cellGrid.append(c)
+        }
+    }
+*/    
     func randomize(density:Int)   {
         for y in 0..<gridHeight    {
             for x in 0..<gridWidth   {

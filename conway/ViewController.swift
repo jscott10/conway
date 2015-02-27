@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     
     var density = 75
     
+    @IBOutlet weak var densitySlider: UISlider!
+    
+    @IBOutlet weak var densityValue: UILabel!
+    
     @IBAction func densitySlider(sender: UISlider) {
         density = lroundf(sender.value)
         densityValue.text = "\(density)"
@@ -22,10 +26,6 @@ class ViewController: UIViewController {
  //       w.currentGrid.printGrid()
         
     }
-    
-    @IBOutlet weak var densitySlider: UISlider!
-    
-    @IBOutlet weak var densityValue: UILabel!
     
     @IBAction func updateGrid() {
         
