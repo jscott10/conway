@@ -10,8 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var w = World(gridWidth: 17, gridHeight: 17)
+    var boardWidth = 17
+    var boardHeight = 17
     
+    var w = World(gridWidth: 17, gridHeight: 17)
+ //   var w:World
     var density = 75
     
     @IBOutlet weak var densitySlider: UISlider!
@@ -29,9 +32,10 @@ class ViewController: UIViewController {
     
     @IBAction func updateGrid() {
         
-        w.processWorld()
-        w.currentGrid.printGrid()
-        
+        for i in 0...100    {
+            w.processWorld()
+            w.currentGrid.printGrid()
+        }
     }
 
     override func viewDidLoad() {
@@ -39,16 +43,14 @@ class ViewController: UIViewController {
 
         densitySlider.value = Float(density)
         
-        w.currentGrid.setupPulsar()
+//        w.currentGrid.setupPulsar()
+        w.currentGrid.setupGlider()
         
 //        w.currentGrid.randomize(density)
         
-        println("Current:")
         w.currentGrid.printGrid()
-        println("Next:")
-        w.nextGrid.printGrid()
         
-        //       let imageSize = CGSize(width: 200, height: 200)
+               let imageSize = CGSize(width: 200, height: 200)
         //      let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 100, y: 100), size: imageSize))
         //       self.view.addSubview(imageView)
         //      let image = drawCustomImage(imageSize)

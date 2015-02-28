@@ -41,17 +41,13 @@ class Grid  {
         }
     }
     
-    func randomize2(density:Int)   {
-        for y in 0..<gridHeight    {
-            for x in 0..<gridWidth   {
-                if Int(arc4random_uniform(100)) < density   {
-                    cellGrid[y][x].powerOn()
-                }
-                else    {
-                    cellGrid[y][x].powerOff()
-                }
-            }
-        }
+    func setupGlider()  {
+        cellGrid[1][1].powerOn()
+        cellGrid[2][2].powerOn()
+        cellGrid[2][3].powerOn()
+        cellGrid[3][1].powerOn()
+        cellGrid[3][2].powerOn()
+//        cellGrid[3][3].powerOn()
     }
     
     func setupPulsar()   {
@@ -124,8 +120,6 @@ class Grid  {
         let plusX = (x + gridWidth + 1) % gridWidth
         let minusX = (x + gridWidth - 1) % gridWidth
         
-//        print("\(x), \(y) : ")
-
         if cellGrid[minusY][minusX].isAlive    {
             neighbors++
         }
@@ -150,9 +144,6 @@ class Grid  {
         if cellGrid[plusY][plusX].isAlive    {
             neighbors++
         }
-        
- //       print(" : -Y=\(minusY), +Y=\(plusY), -X=\(minusX), +X=\(plusX) : n=\(neighbors)")
- //       println()
         
         return neighbors
         

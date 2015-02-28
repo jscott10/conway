@@ -22,11 +22,8 @@ class World  {
     }
 
     func processWorld()     {
-        println("Current BEFORE 1:")
-        currentGrid.printGrid()
-        println("Next BEFORE 1:")
-        nextGrid.printGrid()
         
+        // Change the grid according to the ruleset
         for (y, cellRow) in enumerate(currentGrid.cellGrid) {
             for (x, cell) in enumerate(cellRow) {
                 let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
@@ -49,11 +46,7 @@ class World  {
             }
         }
         
-        println("Current BEFORE 2:")
-        currentGrid.printGrid()
-        println("Next BEFORE 2:")
-        nextGrid.printGrid()
-        
+        // Copy the changed grid to the original grid
         for (y, cellRow) in enumerate(nextGrid.cellGrid) {
             for (x, cell) in enumerate(cellRow) {
                 currentGrid.cellGrid[y][x].energyLevel = cell.energyLevel
