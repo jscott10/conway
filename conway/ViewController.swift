@@ -22,8 +22,8 @@ class ViewController: UIViewController {
         density = lroundf(sender.value)
         densityValue.text = "\(density)"
 
-        //        w.currentGrid.randomize(density)
- //       w.currentGrid.printGrid()
+//       w.currentGrid.randomize(density)
+//       w.currentGrid.printGrid()
         
     }
     

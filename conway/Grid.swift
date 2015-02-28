@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-class Grid: NSObject  {
+class Grid  {
     
     var cellGrid = [[Cell]]()
     let gridWidth: Int
@@ -172,27 +173,28 @@ class Grid: NSObject  {
     }
     
     func printGrid()   {
-        for xx in 0..<gridWidth+1   {
-            print("--")
+        print(":")
+        for x in 0..<(gridWidth+1)*2-1   {
+            print("-")
         }
-        println()
-        for y in 0..<gridHeight    {
+        println(":")
+        for (y, cellRow) in enumerate(cellGrid)    {
             print("| ")
-            for x in 0..<gridWidth   {
-                if cellGrid[y][x].isDead    {
-                    print("-")
+            for (x, cell) in enumerate(cellRow)   {
+                if cell.isDead    {
+                    print("- ")
                 }
                 else    {
-                    print("O")
+                    print("O ")
                 }
-                print(" ")
             }
             println("|")
         }
-        for xx in 0..<gridWidth+1   {
-            print("--")
+        print(":")
+        for x in 0..<(gridWidth+1)*2-1   {
+            print("-")
         }
-        println()
+        println(":")
     }
 
 }
