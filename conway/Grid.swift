@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class Grid  {
     
@@ -28,20 +27,6 @@ class Grid  {
             cellGrid.append(c)
         }
     }
-
-    /*
-    func copy() -> Grid {
-        for (y, cellRow) in enumerate(cellGrid) {
-            for (x, cell) in enumerate(cellRow) {
-        for y in 0..<gridHeight    {
-            c = copy.()
-            for x in 0..<gridWidth  {
-                c.append(Cell())
-            }
-            cellGrid.append(c)
-        }
-    }
-*/
     
     func randomize(density: Int)   {
         for (y, cellRow) in enumerate(cellGrid) {

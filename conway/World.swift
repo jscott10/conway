@@ -60,19 +60,6 @@ class World  {
             }
         }
 
-        //        currentGrid = nextGrid
-        
-//        for yy in 0..<currentGrid.gridHeight    {
-//            for xx in 0..<currentGrid.gridWidth   {
-//                currentGrid.cellGrid. = nextGrid.cellGrid[yy][xx]
-//            }
-//        }
-
-        println("Current AFTER 3:")
-        currentGrid.printGrid()
-        println("Next AFTER 3:")
-        nextGrid.printGrid()
-        
     }
 
 }
