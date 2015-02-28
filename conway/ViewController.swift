@@ -29,7 +29,9 @@ class ViewController: UIViewController {
     
     @IBAction func updateGrid() {
         
-        w.processWorld()
+       for i in 0...100    {
+            w.processWorld()
+        }
  //       w.currentGrid.printGrid()
         
     }

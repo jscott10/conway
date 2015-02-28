@@ -22,15 +22,15 @@ class World  {
     }
 
     func processWorld()     {
-        println("Current BEFORE1:")
+        println("Current BEFORE 1:")
         currentGrid.printGrid()
-        println("Next BEFORE:")
+        println("Next BEFORE 1:")
         nextGrid.printGrid()
         
         for (y, cellRow) in enumerate(currentGrid.cellGrid) {
             for (x, cell) in enumerate(cellRow) {
                 let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
-                if currentGrid.cellGrid[y][x].isDead {
+                if cell.isDead {
                     if neighbors == 3 {
                         nextGrid.cellGrid[y][x].powerOn()
                     }
@@ -49,14 +49,18 @@ class World  {
             }
         }
         
-        println("Current BEFORE2:")
+        println("Current BEFORE 2:")
         currentGrid.printGrid()
-        println("Next BEFORE2:")
-        println("\(currentGrid.cellGrid[5].count)")
+        println("Next BEFORE 2:")
         nextGrid.printGrid()
-//        currentGrid.cellGrid[5]
         
-        currentGrid = nextGrid
+        for (y, cellRow) in enumerate(nextGrid.cellGrid) {
+            for (x, cell) in enumerate(cellRow) {
+                currentGrid.cellGrid[y][x].energyLevel = cell.energyLevel
+            }
+        }
+
+        //        currentGrid = nextGrid
         
 //        for yy in 0..<currentGrid.gridHeight    {
 //            for xx in 0..<currentGrid.gridWidth   {
@@ -64,9 +68,9 @@ class World  {
 //            }
 //        }
 
-        println("Current AFTER3:")
+        println("Current AFTER 3:")
         currentGrid.printGrid()
-        println("Next AFTER3:")
+        println("Next AFTER 3:")
         nextGrid.printGrid()
         
     }

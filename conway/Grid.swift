@@ -28,10 +28,11 @@ class Grid  {
             cellGrid.append(c)
         }
     }
-/*
+
+    /*
     func copy() -> Grid {
-        var c: Grid(gridWidth: gridWidth, gridHeight: gridHeight)
-        
+        for (y, cellRow) in enumerate(cellGrid) {
+            for (x, cell) in enumerate(cellRow) {
         for y in 0..<gridHeight    {
             c = copy.()
             for x in 0..<gridWidth  {
