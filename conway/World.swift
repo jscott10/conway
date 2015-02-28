@@ -27,8 +27,8 @@ class World  {
         println("Next BEFORE:")
         nextGrid.printGrid()
         
-        for y in 0..<currentGrid.gridHeight    {
-            for x in 0..<currentGrid.gridWidth   {
+        for (y, cellRow) in enumerate(currentGrid.cellGrid) {
+            for (x, cell) in enumerate(cellRow) {
                 let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
                 if currentGrid.cellGrid[y][x].isDead {
                     if neighbors == 3 {
@@ -51,20 +51,22 @@ class World  {
         
         println("Current BEFORE2:")
         currentGrid.printGrid()
-        println("Next BEFORE:")
+        println("Next BEFORE2:")
+        println("\(currentGrid.cellGrid[5].count)")
         nextGrid.printGrid()
+//        currentGrid.cellGrid[5]
         
         currentGrid = nextGrid
         
 //        for yy in 0..<currentGrid.gridHeight    {
 //            for xx in 0..<currentGrid.gridWidth   {
- //               currentGrid.cellGrid[yy][xx] = nextGrid.cellGrid[yy][xx]
+//                currentGrid.cellGrid. = nextGrid.cellGrid[yy][xx]
 //            }
 //        }
 
         println("Current AFTER3:")
         currentGrid.printGrid()
-        println("Next AFTER:")
+        println("Next AFTER3:")
         nextGrid.printGrid()
         
     }

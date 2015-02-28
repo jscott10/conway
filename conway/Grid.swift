@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Grid  {
+class Grid: NSObject  {
     
     var cellGrid = [[Cell]]()
     let gridWidth: Int
@@ -39,8 +39,22 @@ class Grid  {
             cellGrid.append(c)
         }
     }
-*/    
-    func randomize(density:Int)   {
+*/
+    
+    func randomize(density: Int)   {
+        for (y, cellRow) in enumerate(cellGrid) {
+            for (x, cell) in enumerate(cellRow) {
+                if Int(arc4random_uniform(100)) < density   {
+                    cell.powerOn()
+                }
+                else    {
+                    cell.powerOff()
+                }
+            }
+        }
+    }
+    
+    func randomize2(density:Int)   {
         for y in 0..<gridHeight    {
             for x in 0..<gridWidth   {
                 if Int(arc4random_uniform(100)) < density   {
