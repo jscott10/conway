@@ -27,21 +27,20 @@ class World  {
         for (y, cellRow) in enumerate(currentGrid.cellGrid) {
             for (x, cell) in enumerate(cellRow) {
                 let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
-                if cell.isDead {
-                    if neighbors == 3 {
-                        nextGrid.cellGrid[y][x].powerOn()
-                    }
-                    else    {
-                        nextGrid.cellGrid[y][x].powerOff()
-                    }
+                if cell.isDead && neighbors == 3 {
+                    nextGrid.cellGrid[y][x].powerOn()
                 }
+//                    else    {
+//                        nextGrid.cellGrid[y][x].powerOff()
+//                    }
+//                }
                 else    {
-                    if neighbors == 2 || neighbors == 3 {
-                        nextGrid.cellGrid[y][x].powerOn()
-                    }
-                    else    {
+                    if neighbors < 2 || neighbors > 3 {
                         nextGrid.cellGrid[y][x].powerOff()
                     }
+//                    else    {
+//                        nextGrid.cellGrid[y][x].powerOff()
+//                    }
                 }
             }
         }

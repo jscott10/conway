@@ -47,7 +47,6 @@ class Grid  {
         cellGrid[2][3].powerOn()
         cellGrid[3][1].powerOn()
         cellGrid[3][2].powerOn()
-//        cellGrid[3][3].powerOn()
     }
     
     func setupPulsar()   {
