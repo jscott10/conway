@@ -14,11 +14,19 @@ class World  {
     var currentGrid:Grid
     var nextGrid:Grid
     
+    var iteration = 0
+    
     init(gridWidth width: Int, gridHeight height: Int)   {
         
         currentGrid = Grid(gridWidth: width, gridHeight: height)
         nextGrid = Grid(gridWidth: width, gridHeight: height)
         
+    }
+    
+    func resetWorld(density: Int)   {
+        currentGrid.randomize(density)
+        nextGrid.randomize(density)
+        iteration = 0
     }
 
     func processWorld()     {
@@ -30,28 +38,21 @@ class World  {
                 if cell.isDead && neighbors == 3 {
                     nextGrid.cellGrid[y][x].powerOn()
                 }
-//                    else    {
-//                        nextGrid.cellGrid[y][x].powerOff()
-//                    }
-//                }
                 else    {
                     if neighbors < 2 || neighbors > 3 {
                         nextGrid.cellGrid[y][x].powerOff()
                     }
-//                    else    {
-//                        nextGrid.cellGrid[y][x].powerOff()
-//                    }
                 }
             }
         }
-        
+
         // Copy the changed grid to the original grid
         for (y, cellRow) in enumerate(nextGrid.cellGrid) {
             for (x, cell) in enumerate(cellRow) {
                 currentGrid.cellGrid[y][x].energyLevel = cell.energyLevel
             }
         }
-
+        iteration++
     }
 
 }

@@ -11,13 +11,13 @@ import Foundation
 class Grid  {
     
     var cellGrid = [[Cell]]()
-    let gridWidth: Int
-    let gridHeight: Int
+//    let gridWidth: Int
+//    let gridHeight: Int
     
     init(gridWidth width: Int, gridHeight height: Int)   {
         
-        gridWidth = width
-        gridHeight = height
+//        gridWidth = width
+//        gridHeight = height
         
         for y in 0..<height    {
             var c = [Cell]()
@@ -29,8 +29,8 @@ class Grid  {
     }
     
     func randomize(density: Int)   {
-        for (y, cellRow) in enumerate(cellGrid) {
-            for (x, cell) in enumerate(cellRow) {
+        for cellRow in cellGrid {
+            for cell in cellRow {
                 if Int(arc4random_uniform(100)) < density   {
                     cell.powerOn()
                 }
@@ -41,12 +41,12 @@ class Grid  {
         }
     }
     
-    func setupGlider()  {
-        cellGrid[1][1].powerOn()
-        cellGrid[2][2].powerOn()
-        cellGrid[2][3].powerOn()
-        cellGrid[3][1].powerOn()
-        cellGrid[3][2].powerOn()
+    func placeGlider(y: Int, x: Int)  {
+        cellGrid[y][x].powerOn()
+        cellGrid[y+1][x+1].powerOn()
+        cellGrid[y+1][x+2].powerOn()
+        cellGrid[y+2][x].powerOn()
+        cellGrid[y+2][x+1].powerOn()
     }
     
     func setupPulsar()   {
@@ -114,10 +114,10 @@ class Grid  {
         
         var neighbors:Int = 0
         
-        let plusY = (y + gridHeight + 1) % gridHeight
-        let minusY = (y + gridHeight - 1) % gridHeight
-        let plusX = (x + gridWidth + 1) % gridWidth
-        let minusX = (x + gridWidth - 1) % gridWidth
+        let plusY = (y + cellGrid.count + 1) % cellGrid.count
+        let minusY = (y + cellGrid.count - 1) % cellGrid.count
+        let plusX = (x + cellGrid[0].count + 1) % cellGrid[0].count
+        let minusX = (x + cellGrid[0].count - 1) % cellGrid[0].count
         
         if cellGrid[minusY][minusX].isAlive    {
             neighbors++
@@ -150,7 +150,7 @@ class Grid  {
     
     func printGrid()   {
         print(":")
-        for x in 0..<(gridWidth+1)*2-1   {
+        for x in 0..<(cellGrid[0].count+1)*2-1   {
             print("-")
         }
         println(":")
@@ -167,7 +167,7 @@ class Grid  {
             println("|")
         }
         print(":")
-        for x in 0..<(gridWidth+1)*2-1   {
+        for x in 0..<(cellGrid[0].count+1)*2-1   {
             print("-")
         }
         println(":")

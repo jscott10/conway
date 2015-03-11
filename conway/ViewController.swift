@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     
     var running: Bool = false
     
-    var iteration = 0
-    
     var timer: NSTimer!
     
     @IBOutlet weak var densitySlider: UISlider!
@@ -36,11 +34,12 @@ class ViewController: UIViewController {
             timer.invalidate()
             startButton.setTitle("Start", forState: .Normal)
         }
-        w.currentGrid.randomize(density)
-        iteration = 0
-        iterationDisplay.text = "0"
+        
+        w.resetWorld(density)
+        
         //        w.currentGrid.setupPulsar()
         //        w.currentGrid.setupGlider()
+        
         displayGrid(w.currentGrid, cellSize: 4)
     }
     
@@ -91,7 +90,7 @@ class ViewController: UIViewController {
         }
         else    {
             running = true
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
             resetButton.enabled = false
             startButton.setTitle("Stop", forState: .Normal)
        }
@@ -100,7 +99,7 @@ class ViewController: UIViewController {
     func iterateGrid() {
         w.processWorld()
         displayGrid(w.currentGrid, cellSize: 4)
-        iterationDisplay.text = "\(iteration++)"
+        iterationDisplay.text = "\(w.iteration)"
     }
     
     override func viewDidLoad() {
@@ -114,12 +113,12 @@ class ViewController: UIViewController {
         
         println("w: \(self.view.frame.size.width)")
         println("h: \(self.view.frame.size.height)")
+        println("cell mem size: \(sizeof(Cell))")
+        println("grid mem size: \(sizeofValue(w.currentGrid))")
         
-        w.currentGrid.randomize(density)
+        w.resetWorld(density)
 //        w.currentGrid.setupPulsar()
 //        w.currentGrid.setupGlider()
-        
-        w.currentGrid.printGrid()
         
         displayGrid(w.currentGrid, cellSize: cellSize)
         
@@ -178,33 +177,6 @@ class ViewController: UIViewController {
         
     }
 
-    /*
-    func drawBoxGrid(context: CGContext, grid: Grid, cellSide: Int)  {
-        
-        let cellSpacing = 1
-        let cellSize = CGSize(width: cellSide, height: cellSide)
-        
-        // Setup complete, do drawing here
-        CGContextSetFillColorWithColor(context, UIColor.brownColor().CGColor)
-        CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
-        
-        for (y, cellRow) in enumerate(grid.cellGrid) {
-            for (x, cell) in enumerate(cellRow) {
-                let xOffset = x * (cellSide + cellSpacing)
-                let yOffset = y * (cellSide + cellSpacing)
-//                let xOffset = 2 + (x * (cellSide + cellSpacing))
-//                let yOffset = 2 + (y * (cellSide + cellSpacing))
-                if cell.isAlive {
-                    CGContextSetFillColorWithColor(context, UIColor.yellowColor().CGColor)
-                }
-                else    {
-                    CGContextSetFillColorWithColor(context, UIColor.brownColor().CGColor)
-                }
-                CGContextFillRect(context, CGRect(origin: CGPoint(x: xOffset, y: yOffset), size: cellSize))
-            }
-        }
-    }
-*/
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
