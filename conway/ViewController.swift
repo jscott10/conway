@@ -18,7 +18,13 @@ class ViewController: UIViewController {
     
     var timer: NSTimer!
     
-    @IBOutlet weak var densitySlider: UISlider!
+    @IBOutlet weak var changeInitialDensity: UISlider!
+    
+    @IBOutlet weak var boardWidth: UILabel!
+    @IBOutlet weak var boardWidthStepper: UIStepper!
+    
+    @IBOutlet weak var boardHeight: UILabel!
+    @IBOutlet weak var boardHeightStepper: UIStepper!
     
     @IBOutlet weak var densityValue: UILabel!
     
@@ -43,36 +49,15 @@ class ViewController: UIViewController {
         displayGrid(w.currentGrid, cellSize: 4)
     }
     
-/*
-    @IBAction func controlBar(sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex  {
-        case 0:
-            if !running {
-                timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
-                startButton.setTitle("Stop", forState: .Normal)
-            }
-        case 1:
-            if running  {
-                running = false
-                timer.invalidate()
-                startButton.setTitle("Start", forState: .Normal)
-            }
-        case 2:
-            if running  {
-                running = false
-                timer.invalidate()
-                startButton.setTitle("Start", forState: .Normal)
-            }
-            w.currentGrid.randomize(25)
-        //        w.currentGrid.setupPulsar()
-        //        w.currentGrid.setupGlider()
-            displayGrid(w.currentGrid, cellSize: 4)
-        default:
-            break
-        }
+    @IBAction func changeBoardHeight(sender: UIStepper) {
+        boardHeight.text = "\(sender.value)"
     }
-*/
-    @IBAction func densitySlider(sender: UISlider) {
+    
+    @IBAction func changeBoardWidth(sender: UIStepper) {
+        boardWidth.text = "\(sender.value)"
+    }
+    
+    @IBAction func changeInitialDensity(sender: UISlider) {
 
         density = lroundf(sender.value)
         densityValue.text = "\(density)"
@@ -104,6 +89,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        boardWidthStepper.maximumValue = Double(self.view.frame.size.width)
+        boardHeightStepper.maximumValue = Double(self.view.frame.size.height)
+        
 
         var boardWidth = 17
         var boardHeight = 17
