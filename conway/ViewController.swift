@@ -20,12 +20,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var changeInitialDensity: UISlider!
     
-    @IBOutlet weak var boardWidth: UILabel!
-    @IBOutlet weak var boardWidthStepper: UIStepper!
-    
-    @IBOutlet weak var boardHeight: UILabel!
-    @IBOutlet weak var boardHeightStepper: UIStepper!
-    
     @IBOutlet weak var densityValue: UILabel!
     
     @IBOutlet weak var iterationDisplay: UILabel!
@@ -46,15 +40,7 @@ class ViewController: UIViewController {
         //        w.currentGrid.setupPulsar()
         //        w.currentGrid.setupGlider()
         
-        displayGrid(w.currentGrid, cellSize: 4)
-    }
-    
-    @IBAction func changeBoardHeight(sender: UIStepper) {
-        boardHeight.text = "\(sender.value)"
-    }
-    
-    @IBAction func changeBoardWidth(sender: UIStepper) {
-        boardWidth.text = "\(sender.value)"
+        displayGrid(w.currentGrid, cellSize: 5)
     }
     
     @IBAction func changeInitialDensity(sender: UISlider) {
@@ -75,7 +61,7 @@ class ViewController: UIViewController {
         }
         else    {
             running = true
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
             resetButton.enabled = false
             startButton.setTitle("Stop", forState: .Normal)
        }
@@ -83,22 +69,22 @@ class ViewController: UIViewController {
     
     func iterateGrid() {
         w.processWorld()
-        displayGrid(w.currentGrid, cellSize: 4)
+        displayGrid(w.currentGrid, cellSize: 5)
         iterationDisplay.text = "\(w.iteration)"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        boardWidthStepper.maximumValue = Double(self.view.frame.size.width)
-        boardHeightStepper.maximumValue = Double(self.view.frame.size.height)
+//        boardWidthStepper.maximumValue = Double(self.view.frame.size.width)
+//        boardHeightStepper.maximumValue = Double(self.view.frame.size.height)
         
 
         var boardWidth = 17
         var boardHeight = 17
-        var cellSize = 4
+        var cellSize = 5
         
-        w = World(gridWidth: 75, gridHeight: 75)
+        w = World(gridWidth: 100, gridHeight: 100)
         
         println("w: \(self.view.frame.size.width)")
         println("h: \(self.view.frame.size.height)")
@@ -118,14 +104,16 @@ class ViewController: UIViewController {
         // Cells plus borders
         //        let imageWidth = grid.gridWidth * (cellSize + 1) + 3
         //        let imageHeight = grid.gridHeight * (cellSize + 1) + 3
-        let imageWidth = self.view.frame.size.width
-        let imageHeight = self.view.frame.size.width
+//        let imageWidth = self.view.frame.size.width
+//        let imageHeight = self.view.frame.size.width
+        let imageWidth = 602
+        let imageHeight = 602
         
         let cellSpacing:Int = 1
         
         let imageSize = CGSize(width: imageWidth, height: imageHeight)
         
-        let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 20), size: imageSize))
+        let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 50, y: 50), size: imageSize))
         self.view.addSubview(imageView)
         
         // Setup our context
