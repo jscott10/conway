@@ -17,6 +17,8 @@
 		455C9A1D1A997CC600469BB8 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C9A1C1A997CC600469BB8 /* World.swift */; };
 		455C9A1F1A99801F00469BB8 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = 455C9A1E1A99801F00469BB8 /* Notes */; };
 		4589DF5F1A9D5D74006CAF83 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589DF5E1A9D5D74006CAF83 /* Grid.swift */; };
+		45D52A121ADEC6CF00AB4437 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D52A111ADEC6CF00AB4437 /* GridViewController.swift */; };
+		45D52A141ADEC79400AB4437 /* CellGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D52A131ADEC79400AB4437 /* CellGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		455C9A1C1A997CC600469BB8 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		455C9A1E1A99801F00469BB8 /* Notes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		4589DF5E1A9D5D74006CAF83 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		45D52A111ADEC6CF00AB4437 /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
+		45D52A131ADEC79400AB4437 /* CellGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			children = (
 				455C99FA1A997A0600469BB8 /* AppDelegate.swift */,
 				455C99FC1A997A0600469BB8 /* ViewController.swift */,
+				45D52A131ADEC79400AB4437 /* CellGridView.swift */,
 				455C99FE1A997A0600469BB8 /* Main.storyboard */,
 				455C9A011A997A0600469BB8 /* Images.xcassets */,
 				455C9A031A997A0600469BB8 /* LaunchScreen.xib */,
@@ -95,6 +100,7 @@
 				455C9A1E1A99801F00469BB8 /* Notes */,
 				455C9A1C1A997CC600469BB8 /* World.swift */,
 				4589DF5E1A9D5D74006CAF83 /* Grid.swift */,
+				45D52A111ADEC6CF00AB4437 /* GridViewController.swift */,
 			);
 			path = conway;
 			sourceTree = "<group>";
@@ -229,6 +235,8 @@
 			files = (
 				455C99FD1A997A0600469BB8 /* ViewController.swift in Sources */,
 				455C99FB1A997A0600469BB8 /* AppDelegate.swift in Sources */,
+				45D52A141ADEC79400AB4437 /* CellGridView.swift in Sources */,
+				45D52A121ADEC6CF00AB4437 /* GridViewController.swift in Sources */,
 				455C9A1D1A997CC600469BB8 /* World.swift in Sources */,
 				4589DF5F1A9D5D74006CAF83 /* Grid.swift in Sources */,
 				455C9A1B1A997C2F00469BB8 /* Cell.swift in Sources */,

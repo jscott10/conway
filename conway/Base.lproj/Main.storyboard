@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -59,14 +59,24 @@
                                     <action selector="updateGrid" destination="BYZ-38-t0r" eventType="touchUpInside" id="rj9-i3-9qi"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MC3-CX-DNO" customClass="CellGridView" customModule="conway" customModuleProvider="target">
+                                <rect key="frame" x="16" y="28" width="568" height="440"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="440" id="Nxr-0i-ZW7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JCO-lt-57G" secondAttribute="bottom" constant="63" id="0a7-Q3-AMa"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="8xa-BV-21U"/>
                             <constraint firstItem="Jfq-8k-Rja" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Bd6-ZM-59y"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UyN-a8-RDv" secondAttribute="bottom" constant="20" id="CEa-dc-ALy"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="D8O-w9-Ewd"/>
                             <constraint firstItem="sGQ-Dw-1sr" firstAttribute="leading" secondItem="UyN-a8-RDv" secondAttribute="trailing" constant="46" id="DAN-wk-dxw"/>
                             <constraint firstItem="UyN-a8-RDv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="25" id="MVt-Sm-ueJ"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NS4-G5-d2L"/>
                             <constraint firstItem="9uo-fn-2KK" firstAttribute="centerY" secondItem="JCO-lt-57G" secondAttribute="centerY" constant="0.5" id="Z6O-UT-8Zg"/>
                             <constraint firstAttribute="centerX" secondItem="aTz-Mb-qui" secondAttribute="centerX" id="cEG-Le-Ob6"/>
                             <constraint firstItem="9uo-fn-2KK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-5" id="cvI-Cg-xGg"/>
