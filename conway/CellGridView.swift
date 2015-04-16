@@ -15,22 +15,15 @@ class CellGridView: UIView {
         // Cells plus borders
         //        let imageWidth = grid.gridWidth * (cellSize + 1) + 3
         //        let imageHeight = grid.gridHeight * (cellSize + 1) + 3
-        //        let imageWidth = self.view.frame.size.width
-        //        let imageHeight = self.view.frame.size.width
-        let imageWidth = 602
-        let imageHeight = 602
+        
+        let viewWidth = CGRectGetWidth(self.bounds)
+        let viewHeight = CGRectGetHeight(self.bounds)
         
         let cellSpacing:Int = 1
-        
-        let imageSize = CGSize(width: imageWidth, height: imageHeight)
-        
-        let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 50, y: 50), size: imageSize))
-        self.view.addSubview(imageView)
         
         // Setup our context
         let opaque = true
         let scale: CGFloat = 0
-        UIGraphicsBeginImageContextWithOptions(imageSize, opaque, scale)
         
         let context = UIGraphicsGetCurrentContext()
         
@@ -56,12 +49,6 @@ class CellGridView: UIView {
                 CGContextFillRect(context, CGRect(origin: CGPoint(x: xOffset, y: yOffset), size: cellSize))
             }
         }
-        
-        // Drawing complete, retrieve the finished image and cleanup
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        imageView.image = image
         
     }
     

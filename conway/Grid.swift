@@ -11,14 +11,13 @@ import Foundation
 class Grid  {
     
     var cellGrid = [[Cell]]()
-//    let gridWidth: Int
-//    let gridHeight: Int
     
     init(gridWidth width: Int, gridHeight height: Int)   {
         
-//        gridWidth = width
-//        gridHeight = height
+        // gridWidth = number of cells across
+        // gridHeight = number of cells vertical
         
+        // Build the grid of Cell objects
         for y in 0..<height    {
             var c = [Cell]()
             for x in 0..<width  {
@@ -28,7 +27,8 @@ class Grid  {
         }
     }
     
-    func randomize(density: Int)   {
+    // this can go into a convenience initializer
+    func randomizeGrid(#density: Int)   {
         for cellRow in cellGrid {
             for cell in cellRow {
                 if Int(arc4random_uniform(100)) < density   {
@@ -109,6 +109,8 @@ class Grid  {
         cellGrid[11][14].powerOn()
         cellGrid[12][14].powerOn()
     }
+    
+    // Return number of LIVE neighboring cells -- basic GoL
     
     func checkNeighbors(atRow y: Int, andCol x: Int) -> Int     {
         

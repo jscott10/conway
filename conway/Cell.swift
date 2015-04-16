@@ -5,6 +5,8 @@
 //  Created by James Scott on 12/2/14.
 //  Copyright (c) 2014 James Scott. All rights reserved.
 //
+//  Cell has an energyLevel
+//  Cell isAlive if energyLevel > 0
 
 import Foundation
 import UIKit
