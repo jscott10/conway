@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -46,9 +46,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfq-8k-Rja">
                                 <rect key="frame" x="562" y="570" width="22" height="22"/>
-                                <connections>
-                                    <segue destination="Meb-DE-8d1" kind="show" id="o69-dF-rHh"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UyN-a8-RDv">
                                 <rect key="frame" x="41" y="550" width="33" height="30"/>
@@ -61,7 +58,7 @@
                             </button>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MC3-CX-DNO" customClass="CellGridView" customModule="conway" customModuleProvider="target">
                                 <rect key="frame" x="16" y="28" width="568" height="440"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="440" id="Nxr-0i-ZW7"/>
                                 </constraints>
@@ -70,26 +67,38 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JCO-lt-57G" secondAttribute="bottom" constant="63" id="0a7-Q3-AMa"/>
-                            <constraint firstItem="MC3-CX-DNO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="8xa-BV-21U"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="6WP-eN-GAK"/>
                             <constraint firstItem="Jfq-8k-Rja" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Bd6-ZM-59y"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UyN-a8-RDv" secondAttribute="bottom" constant="20" id="CEa-dc-ALy"/>
-                            <constraint firstItem="MC3-CX-DNO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="D8O-w9-Ewd"/>
                             <constraint firstItem="sGQ-Dw-1sr" firstAttribute="leading" secondItem="UyN-a8-RDv" secondAttribute="trailing" constant="46" id="DAN-wk-dxw"/>
                             <constraint firstItem="UyN-a8-RDv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="25" id="MVt-Sm-ueJ"/>
-                            <constraint firstItem="MC3-CX-DNO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NS4-G5-d2L"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="TSM-1M-GAY"/>
                             <constraint firstItem="9uo-fn-2KK" firstAttribute="centerY" secondItem="JCO-lt-57G" secondAttribute="centerY" constant="0.5" id="Z6O-UT-8Zg"/>
                             <constraint firstAttribute="centerX" secondItem="aTz-Mb-qui" secondAttribute="centerX" id="cEG-Le-Ob6"/>
                             <constraint firstItem="9uo-fn-2KK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-5" id="cvI-Cg-xGg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Jfq-8k-Rja" secondAttribute="bottom" constant="8" id="fVt-SF-Z9u"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sGQ-Dw-1sr" secondAttribute="bottom" constant="20" id="k7L-a2-q5z"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="sUX-0L-Gz9"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="uh3-u5-gVk"/>
                             <constraint firstItem="JCO-lt-57G" firstAttribute="leading" secondItem="9uo-fn-2KK" secondAttribute="trailing" constant="16" id="vGK-tJ-qTC"/>
                             <constraint firstItem="JCO-lt-57G" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="woO-Em-oTd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aTz-Mb-qui" secondAttribute="bottom" constant="8" id="xCa-5t-BGJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="TSM-1M-GAY"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="TSM-1M-GAY"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="changeInitialDensity" destination="9uo-fn-2KK" id="Hhy-8Y-Lys"/>
                         <outlet property="densityValue" destination="JCO-lt-57G" id="SrM-xW-hS9"/>
+                        <outlet property="gridView" destination="MC3-CX-DNO" id="kUv-YH-XyZ"/>
                         <outlet property="iterationDisplay" destination="aTz-Mb-qui" id="X82-dx-ECz"/>
                         <outlet property="resetButton" destination="sGQ-Dw-1sr" id="ebV-ky-bub"/>
                         <outlet property="startButton" destination="UyN-a8-RDv" id="Hgk-xx-fUa"/>
@@ -98,24 +107,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="460" y="572"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="cmx-Ld-7Dd">
-            <objects>
-                <viewController id="Meb-DE-8d1" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eWs-y4-JVz"/>
-                        <viewControllerLayoutGuide type="bottom" id="ThF-0O-duo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Dah-SF-CQN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qJP-ve-avS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1332" y="589"/>
         </scene>
     </scenes>
 </document>

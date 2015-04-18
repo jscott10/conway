@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     var timer: NSTimer!
     
+    @IBOutlet weak var gridView: CellGridView!
+    
     @IBOutlet weak var changeInitialDensity: UISlider!
     
     @IBOutlet weak var densityValue: UILabel!
@@ -29,6 +31,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     
     @IBAction func resetBoard(sender: UIButton) {
+
         if running  {
             running = false
             timer.invalidate()
@@ -40,14 +43,8 @@ class ViewController: UIViewController {
         //        w.currentGrid.setupPulsar()
         //        w.currentGrid.setupGlider()
         
-        displayGrid(w.currentGrid, cellSize: 5)
+//        displayGrid(w.currentGrid, cellSize: 5)
     }
-    
-    let cellGrid: CellGridView!
-    
-    cellGrid = CellGridView()
-    
-    cellGrid
     
     @IBAction func changeInitialDensity(sender: UISlider) {
 
@@ -67,7 +64,7 @@ class ViewController: UIViewController {
         }
         else    {
             running = true
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
             resetButton.enabled = false
             startButton.setTitle("Stop", forState: .Normal)
        }
@@ -75,7 +72,7 @@ class ViewController: UIViewController {
     
     func iterateGrid() {
         w.processWorld()
-        displayGrid(w.currentGrid, cellSize: 5)
+        gridView.setNeedsDisplay()
         iterationDisplay.text = "\(w.iteration)"
     }
     
@@ -90,18 +87,27 @@ class ViewController: UIViewController {
         var boardHeight = 17
         var cellSize = 5
         
-        w = World(gridWidth: 100, gridHeight: 100)
+        w = World(gridWidth: 80, gridHeight: 80, cellSize: 4)
         
         println("w: \(self.view.frame.size.width)")
         println("h: \(self.view.frame.size.height)")
         println("cell mem size: \(sizeof(Cell))")
         println("grid mem size: \(sizeofValue(w.currentGrid))")
+        let viewWidth = CGRectGetWidth(gridView.bounds)
+        let viewHeight = CGRectGetHeight(gridView.bounds)
+        
+        println("viewWidth: \(viewWidth)")
+        println("viewHeight: \(viewHeight)")
+        
         
         w.resetWorld(density)
 //        w.currentGrid.setupPulsar()
 //        w.currentGrid.setupGlider()
         
-        displayGrid(w.currentGrid, cellSize: cellSize)
+        gridView.world = w
+        gridView.setNeedsDisplay()
+        
+//        displayGrid(w.currentGrid, cellSize: cellSize)
         
     }
     

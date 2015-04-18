@@ -9,8 +9,13 @@
 import UIKit
 
 class CellGridView: UIView {
-
-    func displayGrid(grid: Grid, cellSize: Int)  {
+    
+    var world:World!
+    
+    func displayGrid()  {
+        
+        let grid = world.currentGrid
+        let cellSize = world.cellSize
         
         // Cells plus borders
         //        let imageWidth = grid.gridWidth * (cellSize + 1) + 3
@@ -19,34 +24,32 @@ class CellGridView: UIView {
         let viewWidth = CGRectGetWidth(self.bounds)
         let viewHeight = CGRectGetHeight(self.bounds)
         
-        let cellSpacing:Int = 1
+//        println("viewWidth: \(viewWidth)")
+//        println("viewHeight: \(viewHeight)")
+        
+        let cellSpacing = 1
         
         // Setup our context
-        let opaque = true
-        let scale: CGFloat = 0
-        
         let context = UIGraphicsGetCurrentContext()
         
-        //        drawBoxGrid(context, grid: grid, cellSide: cellSize)
-        let cellSize = CGSize(width: cellSize, height: cellSize)
+        CGContextSetLineWidth(context, CGFloat(cellSpacing))
         
-        // Setup complete, do drawing here
-        CGContextSetFillColorWithColor(context, UIColor.brownColor().CGColor)
-        CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
+        // Cell Border color
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
         
         for (y, cellRow) in enumerate(grid.cellGrid) {
+            let yOffset = y * (cellSize - cellSpacing)
             for (x, cell) in enumerate(cellRow) {
-                let xOffset = x * (Int(cellSize.width) + cellSpacing)
-                let yOffset = y * (Int(cellSize.height) + cellSpacing)
-                //                let xOffset = 2 + (x * (cellSide + cellSpacing))
-                //                let yOffset = 2 + (y * (cellSide + cellSpacing))
+                let xOffset = x * (cellSize - cellSpacing)
+                let currentRect = CGRectMake(CGFloat(xOffset), CGFloat(yOffset), CGFloat(cellSize), CGFloat(cellSize))
                 if cell.isAlive {
                     CGContextSetFillColorWithColor(context, UIColor.yellowColor().CGColor)
                 }
                 else    {
                     CGContextSetFillColorWithColor(context, UIColor.brownColor().CGColor)
                 }
-                CGContextFillRect(context, CGRect(origin: CGPoint(x: xOffset, y: yOffset), size: cellSize))
+                CGContextAddRect(context, currentRect)
+                CGContextDrawPath(context, kCGPathEOFillStroke)
             }
         }
         
@@ -57,11 +60,7 @@ class CellGridView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 1.0)
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
-        CGContextSetFillColorWithColor(context, UIColor.yellowColor().CGColor)
-        
+        displayGrid()
     }
 
 }

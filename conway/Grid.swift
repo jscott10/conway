@@ -1,22 +1,26 @@
 //
 //  Grid.swift
 //  conway
+
+//  This class represents a single grid of Cell objects
 //
 //  Created by James Scott on 2/24/15.
 //  Copyright (c) 2015 James Scott. All rights reserved.
 //
 
+
 import Foundation
 
 class Grid  {
     
+    let gridWidth: Int      // Number of cells across
+    let gridHeight: Int     // Number of cells down
     var cellGrid = [[Cell]]()
     
     init(gridWidth width: Int, gridHeight height: Int)   {
         
-        // gridWidth = number of cells across
-        // gridHeight = number of cells vertical
-        
+        gridWidth = width
+        gridHeight = height
         // Build the grid of Cell objects
         for y in 0..<height    {
             var c = [Cell]()
@@ -28,7 +32,7 @@ class Grid  {
     }
     
     // this can go into a convenience initializer
-    func randomizeGrid(#density: Int)   {
+    func randomize(#density: Int)   {
         for cellRow in cellGrid {
             for cell in cellRow {
                 if Int(arc4random_uniform(100)) < density   {
@@ -39,6 +43,18 @@ class Grid  {
                 }
             }
         }
+    }
+    
+    // Duplicate this Grid
+    func duplicate() -> Grid    {
+        let dupGrid:Grid = Grid(gridWidth: gridWidth, gridHeight: gridHeight)
+        // Copy the changed grid to the original grid
+        for (y, cellRow) in enumerate(cellGrid) {
+            for (x, cell) in enumerate(cellRow) {
+                dupGrid.cellGrid[y][x].energyLevel = cell.energyLevel
+            }
+        }
+        return dupGrid
     }
     
     func placeGlider(y: Int, x: Int)  {

@@ -11,21 +11,24 @@ import UIKit
 
 class World  {
     
-    var currentGrid:Grid
-    var nextGrid:Grid
+    var currentGrid: Grid
+    var nextGrid: Grid
+    
+    var cellSize: Int!
     
     var iteration = 0
     
-    init(gridWidth width: Int, gridHeight height: Int)   {
+    init(gridWidth width: Int, gridHeight height: Int, cellSize cSize: Int)   {
         
         currentGrid = Grid(gridWidth: width, gridHeight: height)
         nextGrid = Grid(gridWidth: width, gridHeight: height)
-        
+        cellSize = cSize
+
     }
     
     func resetWorld(density: Int)   {
-        currentGrid.randomize(density)
-        nextGrid.randomize(density)
+        currentGrid.randomize(density: density)
+        nextGrid.randomize(density: density)
         iteration = 0
     }
 
@@ -45,13 +48,10 @@ class World  {
                 }
             }
         }
-
+        
         // Copy the changed grid to the original grid
-        for (y, cellRow) in enumerate(nextGrid.cellGrid) {
-            for (x, cell) in enumerate(cellRow) {
-                currentGrid.cellGrid[y][x].energyLevel = cell.energyLevel
-            }
-        }
+        currentGrid = nextGrid.duplicate()
+
         iteration++
     }
 
