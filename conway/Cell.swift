@@ -2,11 +2,14 @@
 //  Cell.swift
 //  conway
 //
-//  Created by James Scott on 12/2/14.
-//  Copyright (c) 2014 James Scott. All rights reserved.
+//  This is a single Cell, that lives on a grid square
 //
 //  Cell has an energyLevel
 //  Cell isAlive if energyLevel > 0
+//
+//  Created by James Scott on 12/2/14.
+//  Copyright (c) 2014 James Scott. All rights reserved.
+//
 
 import Foundation
 import UIKit

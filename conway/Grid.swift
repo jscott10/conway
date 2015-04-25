@@ -1,13 +1,16 @@
 //
 //  Grid.swift
 //  conway
-
-//  This class represents a single grid of Cell objects
+//
+//  This class represents a single grid of squares that contain Cell objects
+//  Its only purpose is to organize cells into a grid
+//
+//  Each square contains a Cell
+//  Each Cell changes based on neighboring Cells
 //
 //  Created by James Scott on 2/24/15.
 //  Copyright (c) 2015 James Scott. All rights reserved.
 //
-
 
 import Foundation
 
@@ -15,16 +18,18 @@ class Grid  {
     
     let gridWidth: Int      // Number of cells across
     let gridHeight: Int     // Number of cells down
+    
     var cellGrid = [[Cell]]()
     
-    init(gridWidth width: Int, gridHeight height: Int)   {
+    init(gridWidth:Int, gridHeight:Int)   {
         
-        gridWidth = width
-        gridHeight = height
+        self.gridWidth = gridWidth
+        self.gridHeight = gridHeight
+        
         // Build the grid of Cell objects
-        for y in 0..<height    {
+        for y in 0..<gridHeight    {
             var c = [Cell]()
-            for x in 0..<width  {
+            for x in 0..<gridWidth  {
                 c.append(Cell())
             }
             cellGrid.append(c)

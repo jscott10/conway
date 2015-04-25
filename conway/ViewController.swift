@@ -39,20 +39,14 @@ class ViewController: UIViewController {
         }
         
         w.resetWorld(density)
+        iterationDisplay.text = "\(w.iteration)"
+        gridView.setNeedsDisplay()
         
-        //        w.currentGrid.setupPulsar()
-        //        w.currentGrid.setupGlider()
-        
-//        displayGrid(w.currentGrid, cellSize: 5)
     }
     
     @IBAction func changeInitialDensity(sender: UISlider) {
-
         density = lroundf(sender.value)
         densityValue.text = "\(density)"
-//        w.currentGrid.randomize(density)
-//       w.currentGrid.printGrid()
-        
     }
     
     @IBAction func updateGrid() {
@@ -79,23 +73,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        boardWidthStepper.maximumValue = Double(self.view.frame.size.width)
-//        boardHeightStepper.maximumValue = Double(self.view.frame.size.height)
-        
-
         var boardWidth = 17
         var boardHeight = 17
         var cellSize = 5
         
-        w = World(gridWidth: 80, gridHeight: 80, cellSize: 4)
+        w = World(gridWidth: 160, gridHeight: 41, cellSize: 6)
         
         println("w: \(self.view.frame.size.width)")
         println("h: \(self.view.frame.size.height)")
         println("cell mem size: \(sizeof(Cell))")
         println("grid mem size: \(sizeofValue(w.currentGrid))")
+        
         let viewWidth = CGRectGetWidth(gridView.bounds)
         let viewHeight = CGRectGetHeight(gridView.bounds)
-        
         println("viewWidth: \(viewWidth)")
         println("viewHeight: \(viewHeight)")
         
@@ -106,8 +96,6 @@ class ViewController: UIViewController {
         
         gridView.world = w
         gridView.setNeedsDisplay()
-        
-//        displayGrid(w.currentGrid, cellSize: cellSize)
         
     }
     

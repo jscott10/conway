@@ -17,18 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MC3-CX-DNO" customClass="CellGridView" customModule="conway" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTz-Mb-qui">
+                                        <rect key="frame" x="550" y="8" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="1" height="-1"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-fn-2KK">
                                 <rect key="frame" x="9" y="512" width="519" height="31"/>
                                 <connections>
                                     <action selector="changeInitialDensity:" destination="BYZ-38-t0r" eventType="valueChanged" id="606-qZ-DG2"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTz-Mb-qui">
-                                <rect key="frame" x="279" y="571" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGQ-Dw-1sr">
                                 <rect key="frame" x="120" y="550" width="40" height="30"/>
                                 <state key="normal" title="Reset">
@@ -56,44 +63,25 @@
                                     <action selector="updateGrid" destination="BYZ-38-t0r" eventType="touchUpInside" id="rj9-i3-9qi"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MC3-CX-DNO" customClass="CellGridView" customModule="conway" customModuleProvider="target">
-                                <rect key="frame" x="16" y="28" width="568" height="440"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="440" id="Nxr-0i-ZW7"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JCO-lt-57G" secondAttribute="bottom" constant="63" id="0a7-Q3-AMa"/>
-                            <constraint firstItem="MC3-CX-DNO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="6WP-eN-GAK"/>
                             <constraint firstItem="Jfq-8k-Rja" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Bd6-ZM-59y"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UyN-a8-RDv" secondAttribute="bottom" constant="20" id="CEa-dc-ALy"/>
                             <constraint firstItem="sGQ-Dw-1sr" firstAttribute="leading" secondItem="UyN-a8-RDv" secondAttribute="trailing" constant="46" id="DAN-wk-dxw"/>
                             <constraint firstItem="UyN-a8-RDv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="25" id="MVt-Sm-ueJ"/>
-                            <constraint firstItem="MC3-CX-DNO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="TSM-1M-GAY"/>
                             <constraint firstItem="9uo-fn-2KK" firstAttribute="centerY" secondItem="JCO-lt-57G" secondAttribute="centerY" constant="0.5" id="Z6O-UT-8Zg"/>
-                            <constraint firstAttribute="centerX" secondItem="aTz-Mb-qui" secondAttribute="centerX" id="cEG-Le-Ob6"/>
                             <constraint firstItem="9uo-fn-2KK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-5" id="cvI-Cg-xGg"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ddL-41-gGj"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Jfq-8k-Rja" secondAttribute="bottom" constant="8" id="fVt-SF-Z9u"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sGQ-Dw-1sr" secondAttribute="bottom" constant="20" id="k7L-a2-q5z"/>
-                            <constraint firstItem="MC3-CX-DNO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="sUX-0L-Gz9"/>
-                            <constraint firstItem="MC3-CX-DNO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="uh3-u5-gVk"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MC3-CX-DNO" secondAttribute="bottom" id="o7K-hs-tfE"/>
+                            <constraint firstAttribute="trailing" secondItem="MC3-CX-DNO" secondAttribute="trailing" id="p8w-gk-syZ"/>
+                            <constraint firstItem="MC3-CX-DNO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="tMj-mA-2RX"/>
                             <constraint firstItem="JCO-lt-57G" firstAttribute="leading" secondItem="9uo-fn-2KK" secondAttribute="trailing" constant="16" id="vGK-tJ-qTC"/>
                             <constraint firstItem="JCO-lt-57G" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="woO-Em-oTd"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aTz-Mb-qui" secondAttribute="bottom" constant="8" id="xCa-5t-BGJ"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="TSM-1M-GAY"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular">
-                            <mask key="constraints">
-                                <include reference="TSM-1M-GAY"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="changeInitialDensity" destination="9uo-fn-2KK" id="Hhy-8Y-Lys"/>

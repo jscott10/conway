@@ -15,19 +15,20 @@ class CellGridView: UIView {
     func displayGrid()  {
         
         let grid = world.currentGrid
-        let cellSize = world.cellSize
-        
+//        let cellSize = world.cellSize
+        let cellSize:Float = Float(Float(CGRectGetWidth(self.bounds)) + Float(grid.gridWidth) - 1.0) / Float(grid.gridWidth)
+
         // Cells plus borders
         //        let imageWidth = grid.gridWidth * (cellSize + 1) + 3
         //        let imageHeight = grid.gridHeight * (cellSize + 1) + 3
         
         let viewWidth = CGRectGetWidth(self.bounds)
         let viewHeight = CGRectGetHeight(self.bounds)
+        println("viewWidth: \(viewWidth)")
+        println("viewHeight: \(viewHeight)")
         
-//        println("viewWidth: \(viewWidth)")
-//        println("viewHeight: \(viewHeight)")
         
-        let cellSpacing = 1
+        let cellSpacing:Float = 1.0
         
         // Setup our context
         let context = UIGraphicsGetCurrentContext()
@@ -38,9 +39,9 @@ class CellGridView: UIView {
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
         
         for (y, cellRow) in enumerate(grid.cellGrid) {
-            let yOffset = y * (cellSize - cellSpacing)
+            let yOffset = Float(y) * (cellSize - cellSpacing)
             for (x, cell) in enumerate(cellRow) {
-                let xOffset = x * (cellSize - cellSpacing)
+                let xOffset = Float(x) * (cellSize - cellSpacing)
                 let currentRect = CGRectMake(CGFloat(xOffset), CGFloat(yOffset), CGFloat(cellSize), CGFloat(cellSize))
                 if cell.isAlive {
                     CGContextSetFillColorWithColor(context, UIColor.yellowColor().CGColor)
