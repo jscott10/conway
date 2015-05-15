@@ -18,13 +18,14 @@ class Grid  {
     
     let gridWidth: Int      // Number of cells across
     let gridHeight: Int     // Number of cells down
+    var current = false
     
     var cellGrid = [[Cell]]()
     
-    init(gridWidth:Int, gridHeight:Int)   {
+    init(gridWidth width:Int, gridHeight height:Int)   {
         
-        self.gridWidth = gridWidth
-        self.gridHeight = gridHeight
+        gridWidth = width
+        gridHeight = height
         
         // Build the grid of Cell objects
         for y in 0..<gridHeight    {
@@ -36,7 +37,23 @@ class Grid  {
         }
     }
     
-    // this can go into a convenience initializer
+    func makeCurrent()  {
+        current = true
+    }
+    
+    func swapCurrent()  {
+        current = !current
+    }
+    
+    func reset()    {
+        for cellRow in cellGrid {
+            for cell in cellRow {
+                cell.powerOff()
+            }
+        }
+        current = false
+    }
+    
     func randomize(#density: Int)   {
         for cellRow in cellGrid {
             for cell in cellRow {
@@ -60,6 +77,50 @@ class Grid  {
             }
         }
         return dupGrid
+    }
+    
+    func cellAtLocation(#x: Int, y: Int) -> Cell  {
+        return cellGrid[y][x]
+    }
+    
+    // Return number of LIVE neighboring cells -- basic GoL
+    
+    func checkNeighbors(atRow y: Int, andCol x: Int) -> Int     {
+        
+        var neighbors:Int = 0
+        
+        let plusY = (y + cellGrid.count + 1) % cellGrid.count
+        let minusY = (y + cellGrid.count - 1) % cellGrid.count
+        let plusX = (x + cellGrid[0].count + 1) % cellGrid[0].count
+        let minusX = (x + cellGrid[0].count - 1) % cellGrid[0].count
+        
+        if cellAtLocation(x: minusX, y: minusY).isAlive    {
+            neighbors++
+        }
+        if cellAtLocation(x: x, y: minusY).isAlive    {
+            neighbors++
+        }
+        if cellAtLocation(x: plusX, y: minusY).isAlive    {
+            neighbors++
+        }
+        if cellAtLocation(x: minusX, y: y).isAlive    {
+            neighbors++
+        }
+        if cellAtLocation(x: plusX, y: y).isAlive    {
+            neighbors++
+        }
+        if cellAtLocation(x: minusX, y: plusY).isAlive    {
+            neighbors++
+        }
+        if cellAtLocation(x: x, y: plusY).isAlive    {
+            neighbors++
+        }
+        if cellAtLocation(x: plusX, y: plusY).isAlive    {
+            neighbors++
+        }
+        
+        return neighbors
+        
     }
     
     func placeGlider(y: Int, x: Int)  {
@@ -131,47 +192,7 @@ class Grid  {
         cellGrid[12][14].powerOn()
     }
     
-    // Return number of LIVE neighboring cells -- basic GoL
-    
-    func checkNeighbors(atRow y: Int, andCol x: Int) -> Int     {
-        
-        var neighbors:Int = 0
-        
-        let plusY = (y + cellGrid.count + 1) % cellGrid.count
-        let minusY = (y + cellGrid.count - 1) % cellGrid.count
-        let plusX = (x + cellGrid[0].count + 1) % cellGrid[0].count
-        let minusX = (x + cellGrid[0].count - 1) % cellGrid[0].count
-        
-        if cellGrid[minusY][minusX].isAlive    {
-            neighbors++
-        }
-        if cellGrid[minusY][x].isAlive    {
-            neighbors++
-        }
-        if cellGrid[minusY][plusX].isAlive    {
-            neighbors++
-        }
-        if cellGrid[y][minusX].isAlive    {
-            neighbors++
-        }
-        if cellGrid[y][plusX].isAlive    {
-            neighbors++
-        }
-        if cellGrid[plusY][minusX].isAlive    {
-            neighbors++
-        }
-        if cellGrid[plusY][x].isAlive    {
-            neighbors++
-        }
-        if cellGrid[plusY][plusX].isAlive    {
-            neighbors++
-        }
-        
-        return neighbors
-        
-    }
-    
-    func printGrid()   {
+   func printGrid()   {
         print(":")
         for x in 0..<(cellGrid[0].count+1)*2-1   {
             print("-")

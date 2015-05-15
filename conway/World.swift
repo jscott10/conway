@@ -11,48 +11,112 @@ import UIKit
 
 class World  {
     
-    var currentGrid: Grid
-    var nextGrid: Grid
+    var gridA: Grid
+    var gridB: Grid
     
-    var cellSize: Int!
+    var currentGrid: Grid   {
+        return gridA.current ? gridA : gridB
+    }
+    
+    var nextGrid: Grid   {
+        return !gridA.current ? gridA : gridB
+    }
     
     var iteration = 0
     
-    init(gridWidth width: Int, gridHeight height: Int, cellSize cSize: Int)   {
-        
-        currentGrid = Grid(gridWidth: width, gridHeight: height)
-        nextGrid = Grid(gridWidth: width, gridHeight: height)
-        cellSize = cSize
-
+    init(gridWidth width: Int, gridHeight height: Int)   {
+        gridA = Grid(gridWidth: width, gridHeight: height)
+        gridB = Grid(gridWidth: width, gridHeight: height)
+        gridA.makeCurrent()
     }
     
-    func resetWorld(density: Int)   {
-        currentGrid.randomize(density: density)
-        nextGrid.randomize(density: density)
+    func resizeGrid(newWidth width: Int, newHeight height: Int) {
+        gridA = Grid(gridWidth: width, gridHeight: height)
+        gridB = Grid(gridWidth: width, gridHeight: height)
+    }
+    
+    func reset()   {
+        gridA.reset()
+        gridB.reset()
+        gridA.makeCurrent()
         iteration = 0
     }
+    
+    func randomize(density: Int)    {
+        currentGrid.randomize(density: density)
+    }
 
-    func processWorld()     {
+    func process()    {
         
         // Change the grid according to the ruleset
         for (y, cellRow) in enumerate(currentGrid.cellGrid) {
             for (x, cell) in enumerate(cellRow) {
                 let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
-                if cell.isDead && neighbors == 3 {
-                    nextGrid.cellGrid[y][x].powerOn()
+                if cell.isDead  {
+                    if neighbors == 3 {
+                        nextGrid.cellAtLocation(x: x, y: y).powerOn()
+                    }
+                    else    {
+                        nextGrid.cellAtLocation(x: x, y: y).powerOff()
+                    }
                 }
                 else    {
                     if neighbors < 2 || neighbors > 3 {
-                        nextGrid.cellGrid[y][x].powerOff()
+                        nextGrid.cellAtLocation(x: x, y: y).powerOff()
+                    }
+                    else    {
+                        nextGrid.cellAtLocation(x: x, y: y).powerOn()
                     }
                 }
             }
         }
-        
         // Copy the changed grid to the original grid
-        currentGrid = nextGrid.duplicate()
+        // currentGrid = nextGrid.duplicate()
 
+        gridA.swapCurrent()
+        gridB.swapCurrent()
         iteration++
+
     }
 
+    func process2()    {
+        
+        nextGrid.reset()
+        
+        // Change the grid according to the ruleset
+        for (y, cellRow) in enumerate(currentGrid.cellGrid) {
+            for (x, cell) in enumerate(cellRow) {
+                let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
+                if neighbors == 3 || (cell.isAlive && neighbors == 2)   {
+                    nextGrid.cellAtLocation(x: x, y: y).powerOn()
+                }
+            }
+        }
+        
+        gridA.swapCurrent()
+        gridB.swapCurrent()
+        iteration++
+        
+    }
+    
+    func process3()    {
+        
+//        nextGrid.reset()
+        
+        // Change the grid according to the ruleset
+//        for (y, cellRow) in enumerate(currentGrid.cellGrid) {
+//            for (x, cell) in enumerate(cellRow) {
+//                let neighbors = currentGrid.checkNeighbors(atRow: y, andCol: x)
+//                if neighbors == 3 || (cell.isAlive && neighbors == 2)   {
+//                    nextGrid.cellAtLocation(x: x, y: y).powerOn()
+//                }
+//            }
+//        }
+        
+//        gridA.swapCurrent()
+//        gridB.swapCurrent()
+        iteration++
+        
+    }
+    
 }

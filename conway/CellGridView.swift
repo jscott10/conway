@@ -10,26 +10,30 @@ import UIKit
 
 class CellGridView: UIView {
     
-    var world:World!
+    var grid:Grid!
     
     func displayGrid()  {
-        
-        let grid = world.currentGrid
-//        let cellSize = world.cellSize
-        let cellSize:Float = Float(Float(CGRectGetWidth(self.bounds)) + Float(grid.gridWidth) - 1.0) / Float(grid.gridWidth)
 
-        // Cells plus borders
-        //        let imageWidth = grid.gridWidth * (cellSize + 1) + 3
-        //        let imageHeight = grid.gridHeight * (cellSize + 1) + 3
+//        let cellSize:Float = Float(Float(CGRectGetWidth(self.bounds)) + Float(grid.gridWidth) - 1.0) / Float(grid.gridWidth)
+//        let cellSize = CGFloat(ceil(bounds.width / CGFloat(grid.gridWidth)))
         
-        let viewWidth = CGRectGetWidth(self.bounds)
-        let viewHeight = CGRectGetHeight(self.bounds)
-        println("viewWidth: \(viewWidth)")
-        println("viewHeight: \(viewHeight)")
+        // Size of cell including border, small enough to fit in the view without scaling
+        let cellSize = (bounds.width + CGFloat(grid.gridWidth) - 1.0) / CGFloat(grid.gridWidth)
         
+        // the margin required to center the board in the view
+        let margin = floor(bounds.width % cellSize / 2.0)
+
+        let cellSpacing:CGFloat = 1.0
         
-        let cellSpacing:Float = 1.0
+        let cellOffset:CGFloat = cellSize - cellSpacing
         
+        println("xxxxxxxx")
+        println("bounds.width: \(bounds.width)")
+        println("cellSize: \(cellSize)")
+        println("margin: \(margin)")
+        println("cellSpacing: \(cellSpacing)")
+        println("cellOffset: \(cellOffset)")
+
         // Setup our context
         let context = UIGraphicsGetCurrentContext()
         
@@ -39,21 +43,25 @@ class CellGridView: UIView {
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
         
         for (y, cellRow) in enumerate(grid.cellGrid) {
-            let yOffset = Float(y) * (cellSize - cellSpacing)
+            let yOffset = CGFloat(y) * cellOffset + margin
             for (x, cell) in enumerate(cellRow) {
-                let xOffset = Float(x) * (cellSize - cellSpacing)
-                let currentRect = CGRectMake(CGFloat(xOffset), CGFloat(yOffset), CGFloat(cellSize), CGFloat(cellSize))
+                let xOffset = CGFloat(x) * cellOffset + margin
+                var currentRect =  CGRectOffset(CGRect(origin: CGPointZero, size: CGSize(width: cellSize, height: cellSize)), xOffset, yOffset)
                 if cell.isAlive {
                     CGContextSetFillColorWithColor(context, UIColor.yellowColor().CGColor)
                 }
                 else    {
-                    CGContextSetFillColorWithColor(context, UIColor.brownColor().CGColor)
+                    if x == 29  {
+                        CGContextSetFillColorWithColor(context, UIColor.blueColor().CGColor)
+                    }
+                    else    {
+                        CGContextSetFillColorWithColor(context, UIColor.brownColor().CGColor)
+                    }
                 }
                 CGContextAddRect(context, currentRect)
                 CGContextDrawPath(context, kCGPathEOFillStroke)
             }
         }
-        
     }
     
     

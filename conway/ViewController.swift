@@ -10,91 +10,180 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var w:World!
-    
-    var density = 25
-    
-    var running: Bool = false
-    
-    var timer: NSTimer!
+    var g1: UITapGestureRecognizer!
+    var g2: UITapGestureRecognizer!
     
     @IBOutlet weak var gridView: CellGridView!
     
-    @IBOutlet weak var changeInitialDensity: UISlider!
+    @IBOutlet weak var speedStepper: UIStepper!
+    @IBOutlet weak var speedLabel: UILabel!
     
-    @IBOutlet weak var densityValue: UILabel!
+    @IBOutlet weak var densitySlider: UISlider!
+    @IBOutlet weak var densityLabel: UILabel!
     
-    @IBOutlet weak var iterationDisplay: UILabel!
+    @IBOutlet weak var gridWidthSlider: UISlider!
+    @IBOutlet weak var gridWidthLabel: UILabel!
     
-    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var iterationLabel: UILabel!
     
-    @IBOutlet weak var resetButton: UIButton!
+    var world: World!
     
-    @IBAction func resetBoard(sender: UIButton) {
-
-        if running  {
-            running = false
-            timer.invalidate()
-            startButton.setTitle("Start", forState: .Normal)
-        }
+    var running: Bool = false
+    
+    // Number of Cells ACROSS
+    var gridWidth: Int = 50
+    
+    // Number of Cells DOWN
+    var gridHeight: Int = 50
+    
+    // % of grid populated
+    var density = 25
+    
+    // Speed control
+    var delay: NSTimeInterval = 0.0
+    
+    // Speed control loop
+    var timer: NSTimer!
+    
+    @IBAction func speedValueChanged(sender: UIStepper) {
+        stopIterating()
+        delay = sender.value == 10.0 ? NSTimeInterval(0.0) : NSTimeInterval((10 - sender.value) / 10)
+        speedLabel.text = "\(sender.value)"
+        startIterating()
+    }
+    
+    @IBAction func gridWidthValueChanged(sender: UISlider) {
+        stopIterating()
+        gridWidth = Int(sender.value)
+        gridHeight = gridWidth
         
-        w.resetWorld(density)
-        iterationDisplay.text = "\(w.iteration)"
+        gridWidthLabel.text = "\(gridWidth)"
+        
+        world.resizeGrid(newWidth: gridWidth, newHeight: gridHeight)
+//        resetWorld()
+        
+        gridView.grid = world.currentGrid
+//        gridView.lastgrid = world.nextGrid
         gridView.setNeedsDisplay()
-        
     }
     
-    @IBAction func changeInitialDensity(sender: UISlider) {
+    @IBAction func finishedDraggingWidthSlider(sender: UISlider) {
+        restartWorld()
+    }
+    
+    @IBAction func densityValueChanged(sender: UISlider) {
+        stopIterating()
         density = lroundf(sender.value)
-        densityValue.text = "\(density)"
+        densityLabel.text = "\(density)"
+        resetWorld()
+        
+        gridView.grid = world.currentGrid
+//        gridView.lastgrid = world.nextGrid
+        gridView.setNeedsDisplay()
     }
     
-    @IBAction func updateGrid() {
+    func resetWorld() {
+        stopIterating()
+        world.reset()
+        world.currentGrid.randomize(density: density)
+ //       world.currentGrid.setupPulsar()
+    }
+    
+    func restartWorld() {
+        resetWorld()
+        gridView.grid = world.currentGrid
+//        gridView.lastgrid = world.nextGrid
+        gridView.setNeedsDisplay()
+        iterationLabel.text = "\(world.iteration)"
+    }
+    
+    func startIterating() {
+        if !running {
+//            delay = NSTimeInterval(speedStepper.value/100.0)
+            timer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
+            running = true
+            g2.enabled = false
+            gridView.removeGestureRecognizer(g1)
+            g1 = UITapGestureRecognizer(target: self, action: "stopIterating")
+            g1.numberOfTapsRequired = 1
+            g1.numberOfTouchesRequired = 1
+            gridView.addGestureRecognizer(g1)
+        }
+    }
+    
+    func stopIterating() {
         if running  {
             running = false
             timer.invalidate()
-            startButton.setTitle("Start", forState: .Normal)
-            resetButton.enabled = true
+            g1 = UITapGestureRecognizer(target: self, action: "startIterating")
+            g1.numberOfTapsRequired = 1
+            g1.numberOfTouchesRequired = 1
+            gridView.addGestureRecognizer(g1)
+            g2.enabled = true
+            g1.requireGestureRecognizerToFail(g2)
+        }
+    }
+    
+    func toggleIteration()  {
+        if running  {
+            stopIterating()
         }
         else    {
-            running = true
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
-            resetButton.enabled = false
-            startButton.setTitle("Stop", forState: .Normal)
-       }
+            startIterating()
+        }
     }
-    
+
     func iterateGrid() {
-        w.processWorld()
+        world.process()
+//        gridView.lastgrid = world.nextGrid
+        gridView.grid = world.currentGrid
         gridView.setNeedsDisplay()
-        iterationDisplay.text = "\(w.iteration)"
+        iterationLabel.text = "\(world.iteration)"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var boardWidth = 17
-        var boardHeight = 17
-        var cellSize = 5
+        // Set grid width and slider label from slider value
+        gridWidth = Int(gridWidthSlider.value)
+        gridWidthLabel.text = "\(gridWidth)"
         
-        w = World(gridWidth: 160, gridHeight: 41, cellSize: 6)
+        // Square grid for now
+        gridHeight = gridWidth
+        
+        // Set grid density and slider label from slider value
+        density = Int(densitySlider.value)
+        densityLabel.text = "\(density)"
+        
+        // Set delay and speed stepper label from slider value
+        delay = speedStepper.value == 10.0 ? NSTimeInterval(0.0) : NSTimeInterval((10 - speedStepper.value) / 10)
+        speedLabel.text = "\(speedStepper.value)"
+//        delay = NSTimeInterval(speedStepper.value/10.0)
+//        speedLabel.text = "\(10-speedStepper.value)"
+        
+        world = World(gridWidth: gridWidth, gridHeight: gridHeight)
+        resetWorld()
+        
+        g1 = UITapGestureRecognizer(target: self, action: "startIterating")
+        g1.numberOfTapsRequired = 1
+        g1.numberOfTouchesRequired = 1
+        gridView.addGestureRecognizer(g1)
+        
+        g2 = UITapGestureRecognizer(target: self, action: "restartWorld")
+        g2.numberOfTapsRequired = 2
+        g2.numberOfTouchesRequired = 1
+        gridView.addGestureRecognizer(g2)
+        g1.requireGestureRecognizerToFail(g2)
         
         println("w: \(self.view.frame.size.width)")
         println("h: \(self.view.frame.size.height)")
-        println("cell mem size: \(sizeof(Cell))")
-        println("grid mem size: \(sizeofValue(w.currentGrid))")
         
-        let viewWidth = CGRectGetWidth(gridView.bounds)
-        let viewHeight = CGRectGetHeight(gridView.bounds)
-        println("viewWidth: \(viewWidth)")
-        println("viewHeight: \(viewHeight)")
-        
-        
-        w.resetWorld(density)
 //        w.currentGrid.setupPulsar()
 //        w.currentGrid.setupGlider()
         
-        gridView.world = w
+        gridView.grid = world.currentGrid
+//        gridView.lastgrid = world.nextGrid
+        
         gridView.setNeedsDisplay()
         
     }

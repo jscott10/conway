@@ -27,3 +27,25 @@ water
 radiation
 temp
 atmosphere
+
+2 ways to handle zoom:
+
+    1. vary the cell size, change the width and height of grid to fill the screen
+    2. vary the width and height, change the cell size to accomodate
+
+
+viewDidLoad:
+
+set the grid width
+set the grid width label
+set the grid height
+set the density
+set the density label
+set the delay
+set the speed label
+
+instantiate the world object
+
+prepare the world object
+    randomize based on density
+
