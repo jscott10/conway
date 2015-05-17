@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     var g1: UITapGestureRecognizer!
     var g2: UITapGestureRecognizer!
     
+    var tapAction: Selector!
+    
     @IBOutlet weak var gridView: CellGridView!
     
     @IBOutlet weak var speedStepper: UIStepper!
@@ -78,7 +80,6 @@ class ViewController: UIViewController {
         resetWorld()
         
         gridView.grid = world.currentGrid
-//        gridView.lastgrid = world.nextGrid
         gridView.setNeedsDisplay()
     }
     
@@ -92,18 +93,16 @@ class ViewController: UIViewController {
     func restartWorld() {
         resetWorld()
         gridView.grid = world.currentGrid
-//        gridView.lastgrid = world.nextGrid
         gridView.setNeedsDisplay()
         iterationLabel.text = "\(world.iteration)"
     }
     
     func startIterating() {
+        println("started!!!!!!!")
         if !running {
-//            delay = NSTimeInterval(speedStepper.value/100.0)
             timer = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: Selector("iterateGrid"), userInfo: nil, repeats: true)
             running = true
             g2.enabled = false
-            gridView.removeGestureRecognizer(g1)
             g1 = UITapGestureRecognizer(target: self, action: "stopIterating")
             g1.numberOfTapsRequired = 1
             g1.numberOfTouchesRequired = 1
@@ -112,6 +111,7 @@ class ViewController: UIViewController {
     }
     
     func stopIterating() {
+        println("stopped!!!!!!!")
         if running  {
             running = false
             timer.invalidate()
@@ -144,7 +144,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gridView.bounds.size = CGSizeMake(view.bounds.width, view.bounds.height)
+        
         // Set grid width and slider label from slider value
+        let maxGridWidth = (gridView.bounds.width - 1.0) / 2.0
+        gridWidthSlider.maximumValue = Float(maxGridWidth)
         gridWidth = Int(gridWidthSlider.value)
         gridWidthLabel.text = "\(gridWidth)"
         
@@ -186,6 +190,7 @@ class ViewController: UIViewController {
         
         gridView.setNeedsDisplay()
         
+        println("**** gridView.frame = \(gridView.bounds.minX) - \(gridView.bounds.maxX) by \(gridView.bounds.minY) - \(gridView.bounds.maxY) *****")
     }
     
     override func didReceiveMemoryWarning() {
